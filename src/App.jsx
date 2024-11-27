@@ -13,13 +13,16 @@ const App = () => {
     <main className="overflow-hidden">
       <Header />
       <Hero />
+      <br />
+      <br />
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <Cofounders/>
       <Projects/>
       <Features />
-      <Pricing />
+      {/* <Pricing /> */}
       <Faq />
-      <Testimonials />
-      <Download />
+      {/* <Testimonials />
+      <Download /> */}
       <Footer />
     </main>
   );
