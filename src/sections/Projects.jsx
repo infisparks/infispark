@@ -1,12 +1,24 @@
-// src/sections/Projects.jsx
-
-import React from "react";
+import React, { useState } from "react";
 import { Element } from "react-scroll";
 import { projects } from "../constants/index.jsx"; // Assuming you have the projects array
 import clsx from "clsx";
 import Button from "../components/Button.jsx";
 
 const Projects = () => {
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [popupContent, setPopupContent] = useState("");
+
+  const handleButtonClick = (link, projectName) => {
+    if (link === "no") {
+      setPopupContent(
+        `The details for the project "${projectName}" cannot be shared due to privacy concerns.`
+      );
+      setIsPopupVisible(true);
+    } else {
+      window.open(link, "_blank");
+    }
+  };
+
   return (
     <section className="py-16 bg-s1">
       <Element name="projects">
@@ -52,7 +64,7 @@ const Projects = () => {
 
                   <Button
                     icon="/images/projects.png"
-                    onClick={() => window.open(project.link, "_blank")}
+                    onClick={() => handleButtonClick(project.link, project.name)}
                   >
                     View Project
                   </Button>
@@ -62,6 +74,22 @@ const Projects = () => {
           </div>
         </div>
       </Element>
+
+      {/* Popup Modal */}
+      {isPopupVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-s2 p-6 rounded-lg shadow-xl max-w-md w-full">
+            <h4 className="text-xl font-bold text-p3 mb-4">Information</h4>
+            <p className="text-p4 mb-6">{popupContent}</p>
+            <button
+              onClick={() => setIsPopupVisible(false)}
+              className="px-4 py-2 bg-[#2EF2FF] text-white rounded-lg hover:bg-p3"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

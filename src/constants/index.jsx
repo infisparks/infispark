@@ -164,14 +164,12 @@ export const plans = [
 // src/constants/index.jsx
 
 // src/constants/index.jsx
-
 export const cofounders = [
   {
     id: 1,
     name: "Shaikh Mudassir",
-    title: "CTO & Co-Founder",
-    
-    bio: "Shaikh Mudassir is the visionary behind our company, leading with passion and dedication.",
+    title: "CTO & Founder",
+    bio: "Shaikh Mudassir, a skilled Software and Web Developer, leads the company's technical operations.",
     photo: "/infi/mudassir.png", // Ensure this image exists
     instagram: "https://www.instagram.com/mudassir.dev", // Add Instagram link
     email: "mudassirs472@gmail.com",
@@ -181,13 +179,14 @@ export const cofounders = [
     id: 2,
     name: "Moin Zariwala",
     title: "CEO & Founder",
-    bio: "Moin Zariwala drives our technological advancements, ensuring we stay ahead in the industry.",
+    bio: "Moin Zariwala drives the company's marketing and business growth with strategic expertise.",
     photo: "/infi/moin.png", // Ensure this image exists
     instagram: "https://www.instagram.com/moin_zariwala", // Add Instagram link
     email: "moinzariwala99@gmail.com",
     phone: "+91 81088 21353",
   },
 ];
+
 
 
 
@@ -465,47 +464,78 @@ export const socials = [
 ];
 
 
-
 export const projects = [
   {
     id: 1,
-    name: "Project One",
+    name: "Foxninety",
     category: "Web Development",
-    description: "A cutting-edge eCommerce platform built with React and Node.js.",
+    description: "A premium website for luxury hand watches.",
+    image: "/partner/1.png",
+    link: "https://www.foxninety.in/",
+  },
+  {
+    id: 2,
+    name: "Medzeal",
+    category: "Web Development",
+    description: "A website offering wellness and health services.",
     image: "/partner/2.png",
-    link: "https://exampleprojectone.com",
+    link: "https://medzeal.in/",
   },
   {
-    id: 2,
-    name: "Project Two",
+    id: 3,
+    name: "Medbliss",
     category: "Mobile App",
-    description: "A sleek mobile app for food delivery built using Flutter.",
-    image: "/partner/2.png",
-    link: "https://exampleprojecttwo.com",
+    description: "A premium mobile app offering blood and x-ray services.",
+    image: "/partner/3.png",
+    link: "no",
   },
   {
-    id: 2,
-    name: "Project Two",
-    category: "Mobile App",
-    description: "A sleek mobile app for food delivery built using Flutter.",
-    image: "/images/hero.png",
-    link: "https://exampleprojecttwo.com",
+    id: 4,
+    name: "ISRC",
+    category: "Web Development",
+    description: "An international STEM & robotics championship that promotes STEM education.",
+    image: "/partner/4.png",
+    link: "https://isrc.org.in/",
   },
   {
-    id: 2,
-    name: "Project Two",
-    category: "Mobile App",
-    description: "A sleek mobile app for food delivery built using Flutter.",
-    image: "/images/hero.png",
-    link: "https://exampleprojecttwo.com",
+    id: 5,
+    name: "Elite Club",
+    category: "Web Development",
+    description: "A website for the ECS department of AITKC, offering club-related services.",
+    image: "/partner/5.png",
+    link: "https://elite.aiktc.ac.in/",
   },
   {
-    id: 2,
-    name: "Project Two",
+    id: 6,
+    name: "Gautami",
+    category: "Web Development",
+    description: "A comprehensive hospital management website.",
+    image: "/partner/6.png",
+    link: "no",
+  },
+  {
+    id: 7,
+    name: "Maden",
+    category: "Web Development",
+    description: "A landing page for a company showcasing its services.",
+    image: "/partner/7.png",
+    link: "no",
+  },
+  {
+    id: 8,
+    name: "Igzinet",
+    category: "Web Development",
+    description: "A website for a Wi-Fi service provider offering connectivity solutions.",
+    image: "/partner/8.png",
+    link: "https://igzinet.in",
+  },
+  {
+    id: 9,
+    name: "Al-Kashif Enterprises",
     category: "Mobile App",
-    description: "A sleek mobile app for food delivery built using Flutter.",
-    image: "/images/hero.png",
-    link: "https://exampleprojecttwo.com",
+    description: "An app that allows users to book services related to document processing.",
+    image: "/partner/9.png",
+    link: "no",
   },
   // Add more projects here
 ];

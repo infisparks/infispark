@@ -1,3 +1,5 @@
+// src/components/Button.jsx
+
 import clsx from "clsx";
 import { Marker } from "./Marker.jsx";
 
@@ -8,6 +10,8 @@ const Button = ({
   containerClassName,
   onClick,
   markerFill,
+  type = "button",
+  disabled = false,
 }) => {
   const Inner = () => (
     <>
@@ -19,7 +23,7 @@ const Button = ({
         {icon && (
           <img
             src={icon}
-            alt="circle"
+            alt="icon"
             className="size-10 mr-5 object-contain z-10"
           />
         )}
@@ -32,11 +36,12 @@ const Button = ({
       <span className="glow-before glow-after" />
     </>
   );
+
   return href ? (
     <a
       className={clsx(
         "relative p-0.5 g5 rounded-2xl shadow-500 group",
-        containerClassName,
+        containerClassName
       )}
       href={href}
     >
@@ -44,14 +49,17 @@ const Button = ({
     </a>
   ) : (
     <button
+      type={type}
       className={clsx(
         "relative p-0.5 g5 rounded-2xl shadow-500 group",
-        containerClassName,
+        containerClassName
       )}
       onClick={onClick}
+      disabled={disabled}
     >
       <Inner />
     </button>
   );
 };
+
 export default Button;
