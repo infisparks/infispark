@@ -168,7 +168,7 @@ const JoinOurTeamSection = () => {
   }, [resumePreviewUrl]);
 
   return (
-    <section className="py-16 bg-s1 min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section  id="join-team" className="py-16 bg-s1 min-h-screen flex items-center justify-center relative overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="max-w-3xl mx-auto text-center mb-16">
