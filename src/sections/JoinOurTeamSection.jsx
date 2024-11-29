@@ -91,6 +91,23 @@ const JoinOurTeamSection = () => {
     });
   };
 
+  // Handle click to select/deselect programming languages (for mobile)
+  const handleLanguageClick = (languageId) => {
+    if (formData.programmingLanguages.includes(languageId)) {
+      // Deselect
+      setFormData({
+        ...formData,
+        programmingLanguages: formData.programmingLanguages.filter((id) => id !== languageId),
+      });
+    } else {
+      // Select
+      setFormData({
+        ...formData,
+        programmingLanguages: [...formData.programmingLanguages, languageId],
+      });
+    }
+  };
+
   // Validate form data
   const validate = () => {
     const newErrors = {};
@@ -168,7 +185,10 @@ const JoinOurTeamSection = () => {
   }, [resumePreviewUrl]);
 
   return (
-    <section  id="join-team" className="py-16 bg-s1 min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section
+      id="join-team"
+      className="py-16 bg-s1 min-h-screen flex items-center justify-center relative overflow-hidden"
+    >
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="max-w-3xl mx-auto text-center mb-16">
@@ -195,8 +215,6 @@ const JoinOurTeamSection = () => {
         {/* Step 2: Instructions Page */}
         {currentStep === "instructions" && (
           <div className="max-w-2xl mx-auto bg-white dark:bg-s2 p-8 rounded-lg shadow-lg transition-all duration-700 relative">
-            {/* Shining Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white opacity-10 animate-shine"></div>
             <h4 className="text-3xl font-semibold mb-4 text-[#2EF2FF]">Why Join Us?</h4>
             <ul className="list-disc list-inside mb-6 text-[#EAEDFF] space-y-2">
               <li>Work on live projects that make a real impact.</li>
@@ -213,17 +231,11 @@ const JoinOurTeamSection = () => {
           </div>
         )}
 
-        {/* Step 3: Form with Gate Opening Animation */}
+        {/* Step 3: Form */}
         {currentStep === "form" && (
           <div className="relative overflow-hidden">
-            {/* Gate Animation Overlay */}
-            <div className="absolute inset-0 flex">
-              <div className="w-1/2 bg-white dark:bg-s2 transform origin-left animate-gateOpenLeft"></div>
-              <div className="w-1/2 bg-white dark:bg-s2 transform origin-right animate-gateOpenRight"></div>
-            </div>
-
             {/* Form Container */}
-            <div className="relative z-10 transition-transform duration-1000 transform animate-gateReveal">
+            <div className="relative z-10 transition-transform duration-700">
               {/* Success Message */}
               {isSubmitted && (
                 <div className="mb-8 p-4 bg-green-100 text-green-700 rounded">
@@ -243,9 +255,6 @@ const JoinOurTeamSection = () => {
                 onSubmit={handleSubmit}
                 className="max-w-2xl mx-auto bg-white dark:bg-s2 p-8 rounded-lg shadow-lg relative"
               >
-                {/* Shining Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white opacity-20 animate-shine-fast"></div>
-
                 {/* Full Name */}
                 <div className="mb-4 relative z-10">
                   <label className="block text-p4 mb-2 text-white" htmlFor="fullName">
@@ -373,8 +382,14 @@ const JoinOurTeamSection = () => {
                           alt={language.name}
                           draggable
                           onDragStart={(e) => handleDragStart(e, language.id)}
-                          className="w-12 h-12 cursor-grab drop-shadow-[0_0_10px_white] transition-transform transform hover:scale-110"
+                          onClick={() => handleLanguageClick(language.id)}
+                          onContextMenu={(e) => e.preventDefault()}
+                          className={clsx(
+                            "w-12 h-12 cursor-grab drop-shadow-[0_0_10px_white] transition-transform transform hover:scale-110",
+                            formData.programmingLanguages.includes(language.id) && "border-2 border-[#2EF2FF] rounded-full"
+                          )}
                           title={language.name}
+                          style={{ userSelect: "none" }}
                         />
                       ))}
                     </div>
@@ -390,7 +405,7 @@ const JoinOurTeamSection = () => {
                     )}
                   >
                     {formData.programmingLanguages.length === 0 && (
-                      <p className="text-gray-500">Drag and drop languages here</p>
+                      <p className="text-gray-500">Select programming languages</p>
                     )}
                     {formData.programmingLanguages.map((id) => {
                       const language = programmingLanguages.find((lang) => lang.id === id);
@@ -479,139 +494,62 @@ const JoinOurTeamSection = () => {
           </div>
         )}
 
+        {/* Resume Preview Modal */}
         {isPreviewOpen && resumePreviewUrl && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-              <div className="bg-white dark:bg-s2 p-6 rounded-lg relative max-w-3xl w-full">
-                <button
-                  className="absolute top-2 right-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                  onClick={() => setIsPreviewOpen(false)}
-                  aria-label="Close Preview"
-                >
-                  &times;
-                </button>
-                <h5 className="text-2xl mb-4 text-p4">Resume Preview</h5>
-                {/* Determine file type */}
-                {formData.resume.type === "application/pdf" ? (
-                  <iframe
-                    src={resumePreviewUrl}
-                    title="Resume Preview"
-                    className="w-full h-96"
-                  ></iframe>
-                ) : (
-                  <div className="flex flex-col items-center">
-                    <p className="mb-4 text-gray-700 dark:text-gray-300">
-                      Preview not available for this file type.
-                    </p>
-                    <a
-                      href={resumePreviewUrl}
-                      download={formData.resume.name}
-                      className="px-4 py-2 bg-[#2EF2FF] hover:bg-[#1CB8CC] text-white rounded"
-                    >
-                      Download Resume
-                    </a>
-                  </div>
-                )}
-              </div>
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white dark:bg-s2 p-6 rounded-lg relative max-w-3xl w-full">
+              <button
+                className="absolute top-2 right-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                onClick={() => setIsPreviewOpen(false)}
+                aria-label="Close Preview"
+              >
+                &times;
+              </button>
+              <h5 className="text-2xl mb-4 text-p4">Resume Preview</h5>
+              {/* Determine file type */}
+              {formData.resume.type === "application/pdf" ? (
+                <iframe
+                  src={resumePreviewUrl}
+                  title="Resume Preview"
+                  className="w-full h-96"
+                ></iframe>
+              ) : (
+                <div className="flex flex-col items-center">
+                  <p className="mb-4 text-gray-700 dark:text-gray-300">
+                    Preview not available for this file type.
+                  </p>
+                  <a
+                    href={resumePreviewUrl}
+                    download={formData.resume.name}
+                    className="px-4 py-2 bg-[#2EF2FF] hover:bg-[#1CB8CC] text-white rounded"
+                  >
+                    Download Resume
+                  </a>
+                </div>
+              )}
             </div>
-          )}
+          </div>
+        )}
+      </div>
 
-          {/* Custom Styles for Gate and Shining Animations */}
-          <style jsx>{`
-            @keyframes gateOpenLeft {
-              0% {
-                transform: rotateY(0deg);
-              }
-              100% {
-                transform: rotateY(-90deg);
-              }
-            }
+      {/* Custom Styles (Removed Animations) */}
+      <style jsx>{`
+        /* Removed all animation-related keyframes and classes */
+        img {
+          user-select: none;
+          -webkit-user-drag: none;
+          -moz-user-drag: none;
+          -o-user-drag: none;
+          user-drag: none;
+        }
 
-            @keyframes gateOpenRight {
-              0% {
-                transform: rotateY(0deg);
-              }
-              100% {
-                transform: rotateY(90deg);
-              }
-            }
-
-            @keyframes gateReveal {
-              0% {
-                transform: scale(0.95);
-                opacity: 0;
-              }
-              100% {
-                transform: scale(1);
-                opacity: 1;
-              }
-            }
-
-            @keyframes shine {
-              0% {
-                background-position: -200px 0;
-              }
-              100% {
-                background-position: 200px 0;
-              }
-            }
-
-            @keyframes shine-fast {
-              0% {
-                background-position: -200px 0;
-              }
-              100% {
-                background-position: 200px 0;
-              }
-            }
-
-            .animate-gateOpenLeft {
-              animation: gateOpenLeft 1s forwards;
-            }
-
-            .animate-gateOpenRight {
-              animation: gateOpenRight 1s forwards;
-            }
-
-            .animate-gateReveal {
-              animation: gateReveal 1s forwards;
-            }
-
-            .animate-shine {
-              animation: shine 3s linear infinite;
-              background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.5),
-                transparent
-              );
-              background-size: 400px 100%;
-              position: absolute;
-              top: 0;
-              left: 0;
-              right: 0;
-              bottom: 0;
-              pointer-events: none;
-            }
-
-            .animate-shine-fast {
-              animation: shine-fast 2s linear infinite;
-              background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.7),
-                transparent
-              );
-              background-size: 400px 100%;
-              position: absolute;
-              top: 0;
-              left: 0;
-              right: 0;
-              bottom: 0;
-              pointer-events: none;
-            }
-          `}</style>
-        </div>
-      </section>
+        /* Optional: Add border to selected programming languages */
+        .border-[#2EF2FF] {
+          border-width: 2px;
+          border-color: #2ef2ff;
+        }
+      `}</style>
+    </section>
   );
 };
 
