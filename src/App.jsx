@@ -9,6 +9,7 @@ import Footer from "./sections/Footer.jsx";
 import Cofounders from "./sections/Cofounders.jsx";
 import Projects from "./sections/Projects.jsx";
 import JoinOurTeam from "./sections/JoinOurTeamSection.jsx";
+import WhatWeProvide from "./sections/WhatWeProvide.tsx";
 const App = () => {
   return (
     <main className="overflow-hidden">
@@ -18,6 +19,7 @@ const App = () => {
       <br />
       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <Cofounders/>
+      <WhatWeProvide/>
       <Projects/>
       <JoinOurTeam/>
       <Features />
