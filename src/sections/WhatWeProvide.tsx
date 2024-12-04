@@ -82,7 +82,7 @@ const WhatWeProvide: React.FC = () => {
   }
 
   return (
-    <Element name="services">
+    <Element id="Service" name="services">
       <section className="py-16 bg-gradient-to-b from-s1 to-s2 dark:from-s2 dark:to-s1">
         <div className="container mx-auto px-4">
           <motion.div

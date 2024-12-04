@@ -3,7 +3,26 @@
 import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import Button from "../components/Button.jsx";
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, push } from "firebase/database";
 
+// Your Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyC0G0CULNoh32uSgK3YYsV_rFzPXJOf-7E",
+  authDomain: "infispark-1f305.firebaseapp.com",
+  databaseURL: "https://infispark-1f305-default-rtdb.firebaseio.com",
+  projectId: "infispark-1f305",
+  storageBucket: "infispark-1f305.firebasestorage.app",
+  messagingSenderId: "633143367000",
+  appId: "1:633143367000:web:31721d8795eb8b82e5012d",
+  measurementId: "G-PX7MXMFER1",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+// Programming languages data
 const programmingLanguages = [
   { id: 1, name: "JavaScript", icon: "/icons/3.png" },
   { id: 2, name: "Python", icon: "/icons/11.png" },
@@ -31,34 +50,18 @@ const JoinOurTeamSection = () => {
     github: "",
     about: "",
     programmingLanguages: [],
-    resume: null,
   });
 
   const [errors, setErrors] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  // State for Resume Preview
-  const [resumePreviewUrl, setResumePreviewUrl] = useState(null);
-  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [ticketId, setTicketId] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false); // State for copy feedback
 
   // Handle input changes
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === "resume") {
-      const file = files[0];
-      if (file) {
-        setFormData({ ...formData, resume: file });
-        // Generate preview URL
-        const previewUrl = URL.createObjectURL(file);
-        setResumePreviewUrl(previewUrl);
-      } else {
-        setFormData({ ...formData, resume: null });
-        setResumePreviewUrl(null);
-      }
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   // Handle drag start for programming languages
@@ -134,8 +137,16 @@ const JoinOurTeamSection = () => {
     if (formData.programmingLanguages.length === 0) {
       newErrors.programmingLanguages = "Select at least one programming language.";
     }
-    if (!formData.resume) newErrors.resume = "Resume is required.";
     return newErrors;
+  };
+
+  // Generate a unique ticket ID
+  const generateTicketId = () => {
+    // You can customize this function to generate a ticket ID in your preferred format
+    // Here, we'll use the current timestamp and a random number
+    const timestamp = Date.now();
+    const randomNum = Math.floor(Math.random() * 1000);
+    return `TICKET-${timestamp}-${randomNum}`;
   };
 
   // Handle form submission
@@ -145,12 +156,33 @@ const JoinOurTeamSection = () => {
     if (Object.keys(formErrors).length === 0) {
       setIsLoading(true);
       try {
-        // Simulate API call with timeout (replace with actual API call)
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        // Map programming language IDs to names
+        const selectedLanguages = formData.programmingLanguages
+          .map((id) => {
+            const language = programmingLanguages.find((lang) => lang.id === id);
+            return language ? language.name : null;
+          })
+          .filter((name) => name !== null); // Filter out any nulls
 
-        // Handle form submission, e.g., send data to backend
-        console.log("Form Data Submitted:", formData);
-        setIsSubmitted(true);
+        // Generate ticket ID
+        const newTicketId = generateTicketId();
+
+        // Prepare data to save
+        const dataToSave = {
+          ...formData,
+          programmingLanguages: selectedLanguages,
+          ticketId: newTicketId,
+          submittedAt: new Date().toISOString(),
+        };
+
+        // Save data to Firebase Realtime Database
+        const dbRef = ref(database, "applications");
+        await push(dbRef, dataToSave);
+
+        // Set ticket ID and open popup
+        setTicketId(newTicketId);
+        setIsPopupOpen(true);
+
         // Reset form
         setFormData({
           fullName: "",
@@ -159,14 +191,12 @@ const JoinOurTeamSection = () => {
           github: "",
           about: "",
           programmingLanguages: [],
-          resume: null,
         });
         setErrors({});
-        setResumePreviewUrl(null);
         setCurrentStep("initial"); // Reset to initial step after submission
       } catch (error) {
         console.error("Error submitting form:", error);
-        setErrors({ submit: "An unexpected error occurred." });
+        setErrors({ submit: "An unexpected error occurred. Please try again later." });
       } finally {
         setIsLoading(false);
       }
@@ -175,14 +205,19 @@ const JoinOurTeamSection = () => {
     }
   };
 
-  // Cleanup preview URL when component unmounts or resume changes
-  useEffect(() => {
-    return () => {
-      if (resumePreviewUrl) {
-        URL.revokeObjectURL(resumePreviewUrl);
+  // Handle copying ticket ID to clipboard
+  const handleCopyTicketId = async () => {
+    if (ticketId) {
+      try {
+        await navigator.clipboard.writeText(ticketId);
+        setCopySuccess(true);
+        // Reset the copy success state after 2 seconds
+        setTimeout(() => setCopySuccess(false), 2000);
+      } catch (err) {
+        console.error("Failed to copy!", err);
       }
-    };
-  }, [resumePreviewUrl]);
+    }
+  };
 
   return (
     <section
@@ -236,13 +271,6 @@ const JoinOurTeamSection = () => {
           <div className="relative overflow-hidden">
             {/* Form Container */}
             <div className="relative z-10 transition-transform duration-700">
-              {/* Success Message */}
-              {isSubmitted && (
-                <div className="mb-8 p-4 bg-green-100 text-green-700 rounded">
-                  Thank you for your interest! We'll get back to you soon.
-                </div>
-              )}
-
               {/* Submission Error */}
               {errors.submit && (
                 <div className="mb-8 p-4 bg-red-100 text-red-700 rounded">
@@ -386,7 +414,8 @@ const JoinOurTeamSection = () => {
                           onContextMenu={(e) => e.preventDefault()}
                           className={clsx(
                             "w-12 h-12 cursor-grab drop-shadow-[0_0_10px_white] transition-transform transform hover:scale-110",
-                            formData.programmingLanguages.includes(language.id) && "border-2 border-[#2EF2FF] rounded-full"
+                            formData.programmingLanguages.includes(language.id) &&
+                              "border-2 border-[#2EF2FF] rounded-full"
                           )}
                           title={language.name}
                           style={{ userSelect: "none" }}
@@ -448,37 +477,6 @@ const JoinOurTeamSection = () => {
                   </ul>
                 </div>
 
-                {/* Resume Upload */}
-                <div className="mb-4 relative z-10">
-                  <label className="block text-p4 mb-2 text-white" htmlFor="resume">
-                    Upload Resume<span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="file"
-                    id="resume"
-                    name="resume"
-                    accept=".pdf,.doc,.docx"
-                    onChange={handleChange}
-                    className={clsx(
-                      "w-full px-4 py-2 bg-[#0C1838] border rounded focus:outline-none focus:ring-2 focus:ring-p4 text-white placeholder-white",
-                      errors.resume ? "border-red-500" : "border-white"
-                    )}
-                  />
-                  {errors.resume && (
-                    <p className="text-red-500 text-sm mt-1 relative z-10">{errors.resume}</p>
-                  )}
-                  {/* Preview Resume Button */}
-                  {formData.resume && (
-                    <Button
-                      type="button"
-                      onClick={() => setIsPreviewOpen(true)}
-                      containerClassName="mt-2 px-4 py-2 bg-[#2EF2FF] hover:bg-[#1CB8CC] text-white rounded"
-                    >
-                      Preview Resume
-                    </Button>
-                  )}
-                </div>
-
                 {/* Submit Button */}
                 <div className="text-center relative z-10">
                   <Button
@@ -494,45 +492,53 @@ const JoinOurTeamSection = () => {
           </div>
         )}
 
-        {/* Resume Preview Modal */}
-        {isPreviewOpen && resumePreviewUrl && (
+        {/* Success Popup */}
+        {isPopupOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white dark:bg-s2 p-6 rounded-lg relative max-w-3xl w-full">
+            <div className="bg-white dark:bg-s2 p-6 rounded-lg shadow-lg relative max-w-md w-full">
               <button
-                className="absolute top-2 right-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                onClick={() => setIsPreviewOpen(false)}
-                aria-label="Close Preview"
+                className="absolute top-2 right-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-xl font-bold"
+                onClick={() => setIsPopupOpen(false)}
+                aria-label="Close Popup"
               >
                 &times;
               </button>
-              <h5 className="text-2xl mb-4 text-p4">Resume Preview</h5>
-              {/* Determine file type */}
-              {formData.resume.type === "application/pdf" ? (
-                <iframe
-                  src={resumePreviewUrl}
-                  title="Resume Preview"
-                  className="w-full h-96"
-                ></iframe>
-              ) : (
-                <div className="flex flex-col items-center">
-                  <p className="mb-4 text-gray-700 dark:text-gray-300">
-                    Preview not available for this file type.
-                  </p>
-                  <a
-                    href={resumePreviewUrl}
-                    download={formData.resume.name}
-                    className="px-4 py-2 bg-[#2EF2FF] hover:bg-[#1CB8CC] text-white rounded"
-                  >
-                    Download Resume
-                  </a>
-                </div>
+              <h5 className="text-2xl mb-4 text-p4">Application Submitted Successfully!</h5>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Thank you for your interest. Your application has been submitted successfully. Please
+                wait for our reply.
+              </p>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                <strong>Your Ticket ID:</strong> <span className="text-p4">{ticketId}</span>
+              </p>
+              {/* Copy Ticket ID Button */}
+              <div className="flex items-center justify-center mb-4">
+                <Button
+                  type="button"
+                  onClick={handleCopyTicketId}
+                  containerClassName="px-4 py-2 bg-[#2EF2FF] hover:bg-[#1CB8CC] text-white rounded flex items-center space-x-2"
+                  aria-label="Copy Ticket ID"
+                >
+                  <span>Copy Ticket ID</span>
+                  {/* Optionally, add an icon here */}
+                </Button>
+              </div>
+              {/* Copy Success Message */}
+              {copySuccess && (
+                <p className="text-green-500 text-center mb-4">Ticket ID copied to clipboard!</p>
               )}
+              <Button
+                onClick={() => setIsPopupOpen(false)}
+                containerClassName="mt-2 px-4 py-2 bg-[#2EF2FF] hover:bg-[#1CB8CC] text-white rounded"
+              >
+                Close
+              </Button>
             </div>
           </div>
         )}
       </div>
 
-      {/* Custom Styles (Removed Animations) */}
+      {/* Custom Styles */}
       <style jsx>{`
         /* Removed all animation-related keyframes and classes */
         img {
@@ -547,6 +553,16 @@ const JoinOurTeamSection = () => {
         .border-[#2EF2FF] {
           border-width: 2px;
           border-color: #2ef2ff;
+        }
+
+        /* Popup Scroll Lock */
+        body {
+          overflow: ${isPopupOpen ? "hidden" : "auto"};
+        }
+
+        /* Transition for copy success message */
+        .copy-success {
+          transition: opacity 0.3s ease-in-out;
         }
       `}</style>
     </section>

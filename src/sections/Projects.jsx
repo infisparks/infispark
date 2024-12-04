@@ -92,7 +92,7 @@ const Projects = () => {
   }, [])
 
   return (
-    <section className="py-16 bg-gradient-to-b from-s1 to-s2  dark:to-s1">
+    <section id="Project" className="py-16 bg-gradient-to-b from-s1 to-s2  dark:to-s1">
       <style jsx>{`
         .hide-scrollbar {
           scrollbar-width: none;
