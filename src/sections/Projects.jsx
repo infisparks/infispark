@@ -92,7 +92,7 @@ const Projects = () => {
   }, [])
 
   return (
-    <section id="Project" className="py-16 bg-gradient-to-b from-s1 to-s2  dark:to-s1">
+    <section id="Project" className="py-16 bg-s2">
       <style jsx>{`
         .hide-scrollbar {
           scrollbar-width: none;
@@ -110,10 +110,10 @@ const Projects = () => {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center mb-16"
           >
-            <h3 className="text-3xl md:text-4xl font-bold text-p4 dark:text-white mb-4">
+            <h3 className="text-3xl md:text-4xl font-bold text-p4 mb-4">
               Our Clients
             </h3>
-            <p className="text-p4 dark:text-gray-300 text-lg">
+            <p className="text-p4 text-lg">
               Showcasing the work we've done for our clients, turning ideas into reality.
             </p>
           </motion.div>
@@ -129,9 +129,9 @@ const Projects = () => {
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex-shrink-0 w-80 bg-white dark:bg-s2 rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl border-2 border-[#2EF2FF] dark:border-[#3B54D9] relative overflow-hidden group snap-center"
+                  className="flex-shrink-0 w-80 bg-s2 rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl border-2 border-[#3B54D9] relative overflow-hidden group snap-center"
                 >
-                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#2EF2FF] to-[#3B54D9] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#2EF2FF] to-[#3B54D9] opacity-10 group-hover:opacity-10 transition-opacity duration-300"></div>
                   <div className="flex flex-col items-center relative z-10">
                     <div className="w-32 h-32 relative">
                       <img
@@ -140,11 +140,11 @@ const Projects = () => {
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <h4 className="mt-6 text-xl font-semibold text-p3 dark:text-white">
+                    <h4 className="mt-6 text-xl font-semibold text-p3">
                       {project.name}
                     </h4>
-                    <p className="text-p4 dark:text-gray-300 uppercase mb-4">{project.category}</p>
-                    <p className="text-center text-p4 dark:text-gray-300 mb-6">
+                    <p className="text-p4 uppercase mb-4">{project.category}</p>
+                    <p className="text-center text-p4 mb-6">
                       {project.description}
                     </p>
                     <Button
@@ -160,15 +160,15 @@ const Projects = () => {
             </div>
             <button
               onClick={() => scroll('left')}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-s2 p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-s2 p-2 rounded-full shadow-md hover:bg-gray-700 transition-colors"
             >
-              <ChevronLeft className="w-6 h-6 text-p4 dark:text-white" />
+              <ChevronLeft className="w-6 h-6 text-p4" />
             </button>
             <button
               onClick={() => scroll('right')}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white dark:bg-s2 p-2 rounded-full shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-s2 p-2 rounded-full shadow-md hover:bg-gray-700 transition-colors"
             >
-              <ChevronRight className="w-6 h-6 text-p4 dark:text-white" />
+              <ChevronRight className="w-6 h-6 text-p4" />
             </button>
           </div>
 
@@ -177,7 +177,7 @@ const Projects = () => {
               <button
                 key={index}
                 className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                  index === activeIndex ? 'bg-[#3B54D9]' : 'bg-gray-300 dark:bg-gray-600'
+                  index === activeIndex ? 'bg-[#3B54D9]' : 'bg-gray-600'
                 }`}
                 onClick={() => {
                   if (scrollContainerRef.current) {
@@ -203,13 +203,14 @@ const Projects = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white dark:bg-s2 p-6 rounded-lg shadow-xl max-w-md w-full relative"
+              className="bg-s2 p-6 rounded-lg shadow-xl max-w-md w-full relative"
             >
-              <h4 className="text-xl font-bold text-p3 dark:text-white mb-4">Information</h4>
-              <p className="text-p4 dark:text-gray-300 mb-6">{popupContent}</p>
+              <h4 className="text-xl font-bold text-p3 mb-4">Information</h4>
+              <p className="text-p4 mb-6">{popupContent}</p>
               <button
                 onClick={() => setIsPopupVisible(false)}
-                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                className="absolute top-2 right-2 text-gray-400 hover:text-gray-200"
+                aria-label="Close Popup"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -234,16 +235,16 @@ const Projects = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white dark:bg-s2 p-6 rounded-lg shadow-xl max-w-md w-full relative"
+              className="bg-s2 p-6 rounded-lg shadow-xl max-w-md w-full relative"
             >
-              <h4 className="text-xl font-bold text-p3 dark:text-white mb-4">Confirmation</h4>
-              <p className="text-p4 dark:text-gray-300 mb-6">
+              <h4 className="text-xl font-bold text-p3 mb-4">Confirmation</h4>
+              <p className="text-p4 mb-6">
                 Do you want to visit the website for {confirmationPopup.projectName}?
               </p>
               <div className="flex justify-end space-x-4">
                 <Button
                   onClick={() => setConfirmationPopup(null)}
-                  className="bg-gray-300 text-gray-800 hover:bg-gray-400 transition-colors"
+                  className="bg-gray-600 text-gray-800 hover:bg-gray-700 transition-colors"
                 >
                   Cancel
                 </Button>
