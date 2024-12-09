@@ -83,7 +83,7 @@ const WhatWeProvide: React.FC = () => {
 
   return (
     <Element id="Service" name="services">
-      <section className="py-16 bg-gradient-to-b from-s1 to-s2 dark:from-s2 dark:to-s1">
+      <section className="py-16 bg-s2">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -91,10 +91,10 @@ const WhatWeProvide: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-p4 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-p4 mb-4">
               What We Provide
             </h2>
-            <p className="text-lg text-p4 dark:text-gray-300">
+            <p className="text-lg text-p4">
               Innovative solutions to power your business growth
             </p>
           </motion.div>
@@ -106,18 +106,18 @@ const WhatWeProvide: React.FC = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white dark:bg-s2 rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl border-2 border-[#2EF2FF] dark:border-[#3B54D9] relative overflow-hidden group cursor-pointer"
+                className="bg-s2 rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl border-2 border-[#3B54D9] relative overflow-hidden group cursor-pointer"
                 onClick={() => openServicePopup(service)}
               >
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#2EF2FF] to-[#3B54D9] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#2EF2FF] to-[#3B54D9] opacity-10 group-hover:opacity-10 transition-opacity duration-300"></div>
                 <div className="relative z-10">
-                  <div className="flex items-center justify-center w-16 h-16 bg-[#3B54D9] bg-opacity-10 dark:bg-opacity-20 rounded-full mb-4 mx-auto">
-                    <service.icon className="w-8 h-8 text-[#3B54D9] dark:text-[#2EF2FF]" />
+                  <div className="flex items-center justify-center w-16 h-16 bg-[#3B54D9] bg-opacity-10 rounded-full mb-4 mx-auto">
+                    <service.icon className="w-8 h-8 text-[#3B54D9]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-p3 dark:text-white mb-2 text-center">
+                  <h3 className="text-xl font-semibold text-p3 mb-2 text-center">
                     {service.title}
                   </h3>
-                  <p className="text-p4 dark:text-gray-300 text-center">
+                  <p className="text-p4 text-center">
                     {service.description}
                   </p>
                 </div>
@@ -134,7 +134,7 @@ const WhatWeProvide: React.FC = () => {
             <a
               href="#"
               onClick={(e) => { e.preventDefault(); openGetStartedPopup(); }}
-              className="inline-block bg-[#3B54D9] text-white py-3 px-8 rounded-full font-semibold transition-all duration-300 hover:bg-[#2EF2FF] hover:text-p4 hover:shadow-lg"
+              className="inline-block bg-[#3B54D9] text-white py-3 px-8 rounded-full font-semibold transition-all duration-300 hover:bg-[#2EF2FF] hover:shadow-lg"
             >
               Get Started
             </a>
@@ -155,40 +155,40 @@ const WhatWeProvide: React.FC = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white dark:bg-s2 rounded-2xl p-6 max-w-lg w-full relative"
+              className="bg-s2 rounded-2xl p-6 max-w-lg w-full relative"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={closePopup}
-                className="absolute top-4 right-4 text-p4 dark:text-white hover:text-[#3B54D9] dark:hover:text-[#2EF2FF] transition-colors"
+                className="absolute top-4 right-4 text-p4 hover:text-[#3B54D9] transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>
               {selectedService ? (
                 <>
                   <div className="flex items-center mb-4">
-                    <div className="flex items-center justify-center w-12 h-12 bg-[#3B54D9] bg-opacity-10 dark:bg-opacity-20 rounded-full mr-4">
-                      <selectedService.icon className="w-6 h-6 text-[#3B54D9] dark:text-[#2EF2FF]" />
+                    <div className="flex items-center justify-center w-12 h-12 bg-[#3B54D9] bg-opacity-10 rounded-full mr-4">
+                      <selectedService.icon className="w-6 h-6 text-[#3B54D9]" />
                     </div>
-                    <h3 className="text-2xl font-bold text-p3 dark:text-white">{selectedService.title}</h3>
+                    <h3 className="text-2xl font-bold text-p3">{selectedService.title}</h3>
                   </div>
-                  <p className="text-p4 dark:text-gray-300 mb-6">{selectedService.details}</p>
+                  <p className="text-p4 mb-6">{selectedService.details}</p>
                 </>
               ) : (
                 <>
                   <div className="flex items-center mb-4">
-                    <div className="flex items-center justify-center w-12 h-12 bg-[#3B54D9] bg-opacity-10 dark:bg-opacity-20 rounded-full mr-4">
-                      <Globe className="w-6 h-6 text-[#3B54D9] dark:text-[#2EF2FF]" />
+                    <div className="flex items-center justify-center w-12 h-12 bg-[#3B54D9] bg-opacity-10 rounded-full mr-4">
+                      <Globe className="w-6 h-6 text-[#3B54D9]" />
                     </div>
-                    <h3 className="text-2xl font-bold text-p3 dark:text-white">Get Started</h3>
+                    <h3 className="text-2xl font-bold text-p3">Get Started</h3>
                   </div>
-                  <p className="text-p4 dark:text-gray-300 mb-6">We're excited to help you grow your business. Get in touch with us to get started!</p>
+                  <p className="text-p4 mb-6">We're excited to help you grow your business. Get in touch with us to get started!</p>
                 </>
               )}
               <div className="flex justify-center space-x-4">
                 <a
                   href="tel:9958399157"
-                  className="flex items-center justify-center bg-[#3B54D9] text-white py-2 px-4 rounded-full font-semibold transition-all duration-300 hover:bg-[#2EF2FF] hover:text-p4"
+                  className="flex items-center justify-center bg-[#3B54D9] text-white py-2 px-4 rounded-full font-semibold transition-all duration-300 hover:bg-[#2EF2FF]"
                 >
                   <Phone className="w-5 h-5 mr-2" />
                   Call Us
