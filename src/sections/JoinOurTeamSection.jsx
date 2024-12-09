@@ -249,7 +249,7 @@ const JoinOurTeamSection = () => {
 
         {/* Step 2: Instructions Page */}
         {currentStep === "instructions" && (
-          <div className="max-w-2xl mx-auto bg-white dark:bg-s2 p-8 rounded-lg shadow-lg transition-all duration-700 relative">
+          <div className="max-w-2xl mx-auto dark:bg-s2 p-8 rounded-lg shadow-lg transition-all duration-700 relative">
             <h4 className="text-3xl font-semibold mb-4 text-[#2EF2FF]">Why Join Us?</h4>
             <ul className="list-disc list-inside mb-6 text-[#EAEDFF] space-y-2">
               <li>Work on live projects that make a real impact.</li>
@@ -281,7 +281,7 @@ const JoinOurTeamSection = () => {
               {/* Form */}
               <form
                 onSubmit={handleSubmit}
-                className="max-w-2xl mx-auto bg-white dark:bg-s2 p-8 rounded-lg shadow-lg relative"
+                className="max-w-2xl mx-auto dark:bg-s2 p-8 rounded-lg shadow-lg relative"
               >
                 {/* Full Name */}
                 <div className="mb-4 relative z-10">
@@ -495,7 +495,7 @@ const JoinOurTeamSection = () => {
         {/* Success Popup */}
         {isPopupOpen && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white dark:bg-s2 p-6 rounded-lg shadow-lg relative max-w-md w-full">
+            <div className="dark:bg-s2 bg-white p-6 rounded-lg shadow-lg relative max-w-md w-full">
               <button
                 className="absolute top-2 right-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-xl font-bold"
                 onClick={() => setIsPopupOpen(false)}
