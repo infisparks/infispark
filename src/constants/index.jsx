@@ -529,14 +529,14 @@ export const projects = [
     image: "/partner/8.png",
     link: "https://igzinet.in",
   },
-  {
-    id: 9,
-    name: "Cafe",
-    category: "Mobile App",
-    description: "A Webiste for a Cafe Store Menu.",
-    image: "/partner/10.png",
-    link: "https://cafe-ten-swart.vercel.app/",
-  },
+  // {
+  //   id: 9,
+  //   name: "Cafe",
+  //   category: "Mobile App",
+  //   description: "A Webiste for a Cafe Store Menu.",
+  //   image: "/partner/10.png",
+  //   link: "https://cafe-ten-swart.vercel.app/",
+  // },
   {
     id: 10,
     name: "Al-Kashif Enterprises",
