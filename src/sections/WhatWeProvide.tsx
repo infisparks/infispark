@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Element } from 'react-scroll'
-import { Code, Globe, Users, BarChart3, MessageCircle, Bot, X, Phone } from 'lucide-react'
+import { Code, Globe, Users, BarChart3, MessageCircle, Bot, X, Phone ,Search } from 'lucide-react'
 
 interface Service {
   icon: React.ComponentType<{ className?: string }>
@@ -44,12 +44,14 @@ const services: Service[] = [
     details: "Leverage the power of WhatsApp for your business communication. Our WhatsApp API integration allows you to send notifications, provide customer support, and engage with your audience through one of the world's most popular messaging platforms."
   },
   {
-    icon: Bot,
-    title: 'WhatsApp Custom Bot',
-    description: 'Automate customer interactions with intelligent WhatsApp bots tailored to your business needs.',
-    details: 'Our custom WhatsApp bots use advanced natural language processing to handle customer queries, schedule appointments, and provide information 24/7. These bots can be seamlessly integrated with your existing systems for a unified customer experience.'
+    icon: Search, // New icon for SEO Content
+    title: 'SEO Content',
+    description: 'Enhance your online visibility with our expert SEO content services.',
+    details: 'Our SEO Content services focus on creating high-quality, keyword-optimized content that improves your website’s ranking on search engines. We develop engaging blog posts, articles, and web copy tailored to your industry, ensuring increased organic traffic and better audience engagement. By staying updated with the latest SEO trends and algorithms, we help your business maintain a competitive edge in the digital landscape.'
   },
-]
+];
+
+
 
 const WhatWeProvide: React.FC = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null)

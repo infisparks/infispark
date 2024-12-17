@@ -519,7 +519,7 @@ export const projects = [
     category: "Web Development",
     description: "A landing page for a company showcasing its services.",
     image: "/partner/7.png",
-    link: "no",
+    link: "https://www.madenmulticorp.com/",
   },
   {
     id: 8,
@@ -531,6 +531,14 @@ export const projects = [
   },
   {
     id: 9,
+    name: "Cafe",
+    category: "Mobile App",
+    description: "A Webiste for a Cafe Store Menu.",
+    image: "/partner/10.png",
+    link: "https://cafe-ten-swart.vercel.app/",
+  },
+  {
+    id: 10,
     name: "Al-Kashif Enterprises",
     category: "Mobile App",
     description: "An app that allows users to book services related to document processing.",

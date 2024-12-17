@@ -17,7 +17,8 @@ const Projects = () => {
   const handleButtonClick = (link, projectName) => {
     if (link === "no") {
       setPopupContent(
-        `The details for the project "${projectName}" cannot be shared due to privacy concerns.`
+        `Thank you for your interest in "${projectName}", a secure HRMS managing sensitive personal data. We cannot share its URL or details publicly, but please contact us directly for more information under a confidentiality agreement.
+`
       )
       setIsPopupVisible(true)
     } else {
