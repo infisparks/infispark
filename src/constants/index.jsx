@@ -508,7 +508,7 @@ export const projects = [
   {
     id: 6,
     name: "Gautami",
-    category: "Web Development",
+    category: "HRMS",
     description: "A comprehensive hospital management website.",
     image: "/partner/6.png",
     link: "no",

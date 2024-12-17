@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Element } from 'react-scroll'
-import { Code, Globe, Users, BarChart3, MessageCircle, Bot, X, Phone ,Search } from 'lucide-react'
+import { Code, Globe, Users, BarChart3,  MessageCircle, Bot, X, Phone ,Search } from 'lucide-react'
 
 interface Service {
   icon: React.ComponentType<{ className?: string }>
@@ -31,12 +31,7 @@ const services: Service[] = [
     description: 'Comprehensive Human Resource Management Systems to optimize your workforce management.',
     details: 'Our HRMS solutions streamline your HR processes, from recruitment and onboarding to performance management and payroll. We provide intuitive interfaces and powerful analytics to help you make data-driven decisions about your workforce.'
   },
-  {
-    icon: BarChart3,
-    title: 'CRM',
-    description: 'Customer Relationship Management solutions to enhance customer interactions and boost sales.',
-    details: 'Our CRM systems are designed to help you build stronger relationships with your customers. We offer features like contact management, sales forecasting, and customer service tools to improve your business operations and increase customer satisfaction.'
-  },
+  // Removed CRM Service
   {
     icon: MessageCircle,
     title: 'WhatsApp API',
@@ -44,13 +39,18 @@ const services: Service[] = [
     details: "Leverage the power of WhatsApp for your business communication. Our WhatsApp API integration allows you to send notifications, provide customer support, and engage with your audience through one of the world's most popular messaging platforms."
   },
   {
-    icon: Search, // New icon for SEO Content
+    icon: Search, // SEO Content Icon
     title: 'SEO Content',
     description: 'Enhance your online visibility with our expert SEO content services.',
     details: 'Our SEO Content services focus on creating high-quality, keyword-optimized content that improves your website’s ranking on search engines. We develop engaging blog posts, articles, and web copy tailored to your industry, ensuring increased organic traffic and better audience engagement. By staying updated with the latest SEO trends and algorithms, we help your business maintain a competitive edge in the digital landscape.'
   },
+  {
+    icon: Code, // New icon for Custom App Development
+    title: 'Custom App Development',
+    description: 'Custom-built mobile and web applications designed to meet your unique business needs.',
+    details: 'Our Custom App Development services focus on building scalable and intuitive mobile and web applications that address your specific business needs. Utilizing the latest technologies and best practices, we ensure your applications are robust, user-friendly, and seamlessly integrated with your existing systems. From concept to deployment, we collaborate closely with you to deliver solutions that drive growth and enhance user experience.'
+  },
 ];
-
 
 
 const WhatWeProvide: React.FC = () => {
