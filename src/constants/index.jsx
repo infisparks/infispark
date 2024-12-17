@@ -540,7 +540,7 @@ export const projects = [
   {
     id: 10,
     name: "Al-Kashif Enterprises",
-    category: "Mobile App",
+    category: "HRMS",
     description: "An app that allows users to book services related to document processing.",
     image: "/partner/9.png",
     link: "no",
