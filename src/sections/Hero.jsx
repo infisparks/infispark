@@ -3,9 +3,40 @@ import Button from "../components/Button.jsx";
 
 const Hero = () => {
   return (
-    <section className="relative pt-60 pb-40 max-lg:pt-52 max-lg:pb-36 max-md:pt-36 max-md:pb-32">
+    <section
+      className="
+        relative 
+        pt-10 
+        pb-0                /* Removed extra bottom space */
+        max-lg:pt-11 
+        max-lg:pb-0         /* Removed extra bottom space for large down */
+        max-md:pt-36 
+        max-md:pb-0         /* Removed extra bottom space for medium down */
+      "
+    >
       <Element name="hero">
-        <div className="container mx-auto px-4 flex flex-row items-center justify-between max-lg:flex-col max-lg:text-center">
+        {/* Mobile logo on top (hidden on md and above) */}
+        <div className="container mx-auto px-4 md:hidden mb-4">
+          <img
+            src="/images/hero.png"
+            alt="Infi Spark Logo"
+            className="w-[1200px] h-auto mx-auto"
+          />
+        </div>
+
+        <div
+          className="
+            container 
+            mx-auto 
+            px-4 
+            flex 
+            flex-row 
+            items-center 
+            justify-between 
+            max-lg:flex-col 
+            max-lg:text-center
+          "
+        >
           {/* Text Content */}
           <div className="relative z-2 max-w-lg max-lg:max-w-full max-lg:mb-8">
             <div className="caption small-2 uppercase text-p3">
@@ -15,7 +46,8 @@ const Hero = () => {
               Infi Spark
             </h1>
             <p className="max-w-md mb-14 body-1 max-md:mb-10">
-              At Infi Spark, we create cutting-edge software solutions and visually stunning websites that drive business growth.
+              At Infi Spark, we create cutting-edge software solutions and
+              visually stunning websites that drive business growth.
             </p>
             <LinkScroll to="join-team" offset={-100} spy smooth>
               <Button icon="/images/zap.svg">Join Our Team</Button>
@@ -23,10 +55,10 @@ const Hero = () => {
           </div>
 
           {/* Image */}
-          <div className="flex-shrink-0 w-1/2 max-lg:w-full">
+          <div className="flex-shrink-0 w-1/2 max-lg:w-full hidden md:block">
             <img
               src="/images/hero.png"
-              className="w-full h-auto object-contain"
+              className="w-full h-auto object-contain "
               alt="hero"
             />
           </div>
