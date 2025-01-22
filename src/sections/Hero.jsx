@@ -10,13 +10,13 @@ const Hero = () => {
         pb-0                /* Removed extra bottom space */
         max-lg:pt-11 
         max-lg:pb-0         /* Removed extra bottom space for large down */
-        max-md:pt-36 
+        max-md:pt-7 
         max-md:pb-0         /* Removed extra bottom space for medium down */
       "
     >
       <Element name="hero">
         {/* Mobile logo on top (hidden on md and above) */}
-        <div className="container mx-auto px-4 md:hidden mb-4">
+        <div className="container mx-auto px-4 md:hidden">
           <img
             src="/images/hero.png"
             alt="Infi Spark Logo"
