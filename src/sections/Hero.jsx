@@ -6,11 +6,11 @@ const Hero = () => {
     <section
       className="
         relative 
-        pt-10 
+        pt-2
         pb-0                /* Removed extra bottom space */
-        max-lg:pt-11 
+        max-lg:pt-4 
         max-lg:pb-0         /* Removed extra bottom space for large down */
-        max-md:pt-7 
+        max-md:pt-2
         max-md:pb-0         /* Removed extra bottom space for medium down */
       "
     >
@@ -38,7 +38,7 @@ const Hero = () => {
           "
         >
           {/* Text Content */}
-          <div className="relative z-2 max-w-lg max-lg:max-w-full max-lg:mb-8">
+          <div className="relative z-2 max-w-lg max-lg:max-w-full max-lg:mb-2">
             <div className="caption small-2 uppercase text-p3">
               SOFTWARE Developer
             </div>
