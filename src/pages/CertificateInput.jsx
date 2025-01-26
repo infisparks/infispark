@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/Button.jsx";
 import { database } from "../../firebase.js";
 import { ref, get } from "firebase/database";
+import Header from "../sections/Header.jsx";
+
 
 const CertificateInput = () => {
   const [authCode, setAuthCode] = useState("");
@@ -47,9 +49,10 @@ const CertificateInput = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#080D27">
+        <Header />
       <h1 className="text-4xl font-bold text-white mb-8">Verify Your Certificate</h1>
-      <form onSubmit={handleSubmit} className="w-full max-w-md bg-gray-800 p-8 rounded-lg shadow-lg">
+      <form onSubmit={handleSubmit} className="w-full max-w-md bg-[#0C1838] p-8 rounded-lg shadow-lg">
         {error && (
           <div className="mb-4 p-4 bg-red-100 text-red-700 rounded">
             {error}
@@ -73,6 +76,7 @@ const CertificateInput = () => {
           Verify Certificate
         </Button>
       </form>
+    
     </div>
   );
 };

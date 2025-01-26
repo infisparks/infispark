@@ -1,3 +1,5 @@
+// Header.jsx
+import { Link as RouterLink } from "react-router-dom"; // Import Link from React Router
 import { Link as LinkScroll } from "react-scroll";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
@@ -18,18 +20,16 @@ const Header = () => {
     };
   }, []);
 
-  const NavLink = ({ title }) => (
-    <LinkScroll
+  // NavLink component for external page navigation
+  // eslint-disable-next-line react/prop-types
+  const NavLink = ({ title, to }) => (
+    <RouterLink
+      to={to}
       onClick={() => setIsOpen(false)}
-      to={title}
-      offset={-100}
-      spy
-      smooth
-      activeClass="nav-active"
       className="base-bold text-p4 uppercase transition-colors duration-500 cursor-pointer hover:text-p1 max-lg:my-4 max-lg:h5"
     >
       {title}
-    </LinkScroll>
+    </RouterLink>
   );
 
   return (
@@ -40,9 +40,10 @@ const Header = () => {
       )}
     >
       <div className="container flex h-14 items-center max-lg:px-5">
-        <a className="lg:hidden flex-1 cursor-pointer z-2">
+        {/* Logo - Navigates to Home Page */}
+        <RouterLink to="/" className="lg:hidden flex-1 cursor-pointer z-2">
           <img src="/infi/infispark.png" width={215} height={55} alt="logo" />
-        </a>
+        </RouterLink>
 
         <div
           className={clsx(
@@ -54,20 +55,20 @@ const Header = () => {
             <nav className="max-lg:relative max-lg:z-2 max-lg:my-auto">
               <ul className="flex max-lg:block max-lg:px-12">
                 <li className="nav-li">
-                  <NavLink title="join-team" />
+                  {/* External Page Links */}
+                  <NavLink title="Project" to="/Project" />
                   <div className="dot" />
-                  <NavLink title="Service" />
+                  <NavLink title="Home" to="/" />
                 </li>
 
                 <li className="nav-logo">
+                  {/* In-Page Scroll Link */}
                   <LinkScroll
                     to="hero"
                     offset={-250}
                     spy
                     smooth
-                    className={clsx(
-                      "max-lg:hidden transition-transform duration-500 cursor-pointer",
-                    )}
+                    className="max-lg:hidden transition-transform duration-500 cursor-pointer"
                   >
                     <img
                       src="/infi/infispark.png"
@@ -79,13 +80,15 @@ const Header = () => {
                 </li>
 
                 <li className="nav-li">
-                  <NavLink title="faq" />
+                  {/* External Page Links */}
+                  <NavLink title="Certificate" to="/verify-certificate" />
                   <div className="dot" />
-                  <NavLink title="Project" />
+                  <NavLink title="Team" to="/join-our-team" />
                 </li>
               </ul>
             </nav>
 
+            {/* Decorative Images */}
             <div className="lg:hidden block absolute top-1/2 left-0 w-[960px] h-[380px] translate-x-[-290px] -translate-y-1/2 rotate-90">
               <img
                 src="/images/bg-outlines.svg"
@@ -105,13 +108,14 @@ const Header = () => {
           </div>
         </div>
 
+        {/* Mobile Menu Toggle Button */}
         <button
           className="lg:hidden z-2 size-10 border-2 border-s4/25 rounded-full flex justify-center items-center"
           onClick={() => setIsOpen((prevState) => !prevState)}
         >
           <img
             src={`/images/${isOpen ? "close" : "magic"}.svg`}
-            alt="magic"
+            alt={isOpen ? "Close Menu" : "Open Menu"}
             className="size-1/2 object-contain"
           />
         </button>

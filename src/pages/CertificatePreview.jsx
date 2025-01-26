@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Button from "../components/Button.jsx";
 import { database } from "../../firebase.js";
 import { ref, get } from "firebase/database";
+import QRCode from "qrcode"; // Import the QRCode library
 
 const CertificatePreview = () => {
   const { authCode } = useParams();
@@ -44,7 +45,11 @@ const CertificatePreview = () => {
           console.log("Matched Registration:", matchedRegistration);
 
           if (matchedRegistration) {
-            setData(matchedRegistration);
+            if (matchedRegistration.verify) {
+              setData(matchedRegistration);
+            } else {
+              setError("This certificate is not valid.");
+            }
           } else {
             setError("Invalid Auth Code. Please try again.");
           }
@@ -60,7 +65,7 @@ const CertificatePreview = () => {
     };
 
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [authCode, navigate]);
 
   // 2) Once 'data' is set, use a second effect to generate the certificate
@@ -71,7 +76,7 @@ const CertificatePreview = () => {
   }, [data]);
 
   // 3) The canvas draw logic, now safely called AFTER the component renders
-  const generateCertificate = (userData) => {
+  const generateCertificate = async (userData) => {
     if (!canvasRef.current) {
       console.log("Canvas ref is null, cannot draw yet.");
       return;
@@ -84,7 +89,7 @@ const CertificatePreview = () => {
     img.crossOrigin = "anonymous";
     img.src = "/certificate.png"; // MUST be in public folder
 
-    img.onload = () => {
+    img.onload = async () => {
       canvas.width = img.width;
       canvas.height = img.height;
 
@@ -96,16 +101,48 @@ const CertificatePreview = () => {
       ctx.textAlign = "center";
 
       // Name
-      ctx.font = "bold 80px 'Times New Roman'";
+      ctx.font = "bold 80px 'Sans-serif'";
       ctx.fillText(userData.fullName, canvas.width / 2, 910);
 
       // Auth Code
-      ctx.font = "bold 30px 'Times New Roman'";
-      ctx.fillText(`Auth Code: ${userData.authCode}`, canvas.width / 4, 1450);
+      ctx.font = "bold 35px 'Sans-serif'";
+      ctx.fillText(`Auth Code: ${userData.authCode}`, canvas.width / 4, 1500);
 
       // Awarded Date
       const awardedDate = formatCertificateDate(userData.awardedDate);
-      ctx.fillText(`Awarded Date: ${awardedDate}`, canvas.width / 1.3, 1450);
+      ctx.fillText(`Awarded Date: ${awardedDate}`, canvas.width / 1.3, 1500);
+
+      // Generate Certificate URL
+      const certificateURL = `${window.location.origin}/verify-certificate/${userData.authCode}`;
+
+      try {
+        // Generate QR code as Data URL
+        const qrDataURL = await QRCode.toDataURL(certificateURL, {
+          width: 150, // Adjust size as needed
+          margin: 1,
+        });
+
+        // Create an image for the QR code
+        const qrImg = new Image();
+        qrImg.src = qrDataURL;
+
+        qrImg.onload = () => {
+          // Define QR code position
+          const qrX = canvas.width - 810; // Adjust as needed
+          const qrY = canvas.height - 620; // Adjust as needed
+
+          // Draw the QR code onto the canvas
+          ctx.drawImage(qrImg, qrX, qrY, 200, 200); // Adjust size as needed
+        };
+
+        qrImg.onerror = (err) => {
+          console.error("Error loading QR code image:", err);
+          // Optionally, set an error state or notify the user
+        };
+      } catch (err) {
+        console.error("Error generating QR code:", err);
+        // Optionally, set an error state or notify the user
+      }
     };
 
     img.onerror = (err) => {
@@ -154,8 +191,8 @@ const CertificatePreview = () => {
   // Error UI
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 p-4">
-        <h1 className="text-3xl font-bold text-red-500 mb-4">Error</h1>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-[#0C1838] p-4">
+        <h1 className="text-3xl font-bold text-red-500 mb-4">Invalid Certificate</h1>
         <p className="text-white mb-6">{error}</p>
         <Button
           onClick={() => navigate("/verify-certificate")}
@@ -170,7 +207,7 @@ const CertificatePreview = () => {
   // Main UI: Show the generated certificate
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 p-4">
-      <h1 className="text-4xl font-bold text-white mb-8">Your Certificate</h1>
+      <h1 className="text-4xl font-bold text-white mb-8"> Certificate</h1>
       <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
         <canvas ref={canvasRef} className="border rounded-lg w-72 md:w-[700px]" />
       </div>
@@ -192,7 +229,7 @@ const CertificatePreview = () => {
       </div>
 
       {/* User Certificate Details */}
-      <div className="mt-8 bg-gray-800 p-4 rounded text-white w-full max-w-md">
+      <div className="mt-8 bg-[#0C1838] p-4 rounded text-white w-full max-w-md">
         <h2 className="text-2xl mb-4 border-b border-gray-600 pb-2">Certificate Details</h2>
         <p><strong>Name:</strong> {data.fullName}</p>
         <p><strong>Number:</strong> {data.phoneNumber}</p>
@@ -200,8 +237,9 @@ const CertificatePreview = () => {
         <p>
           <strong>Awarded Date:</strong> {formatCertificateDate(data.awardedDate)}
         </p>
+       
         <p>
-          <strong>Print Date:</strong> {formatCertificateDate(new Date())}
+          <strong>Certificate Status:</strong> {data.verify ? "Valid" : "Invalid"}
         </p>
       </div>
     </div>

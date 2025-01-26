@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound.jsx';
 import RegistrationForm from './pages/RegistrationForm.jsx';
 import CertificateInput from './pages/CertificateInput.jsx';
 import CertificatePreview from './pages/CertificatePreview.jsx';
+import JoinOurTeamSection from './sections/JoinOurTeamSection.jsx';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/verify-certificate" element={<CertificateInput />} />
         <Route path="/certificate-preview/:authCode" element={<CertificatePreview />} />
+        <Route path="/join-our-team" element={<JoinOurTeamSection />} />
         {/* Catch-all route for 404 pages */}
         <Route path="*" element={<NotFound />} />
       </Routes>

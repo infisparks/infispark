@@ -5,10 +5,11 @@
 // src/pages/RegisterTeam.jsx
 import { Element } from "react-scroll";
 import Button from "../components/Button.jsx";
-
+import Header from "../sections/Header.jsx";
 const RegisterTeam = () => {
   return (
     <section>
+     < Header />
       <Element name="register" className="relative py-24 md:py-28 lg:py-40">
         <div className="container">
           <div className="max-w-640 mx-auto">

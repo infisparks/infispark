@@ -1,11 +1,11 @@
 // src/sections/JoinOurTeamSection.jsx
 
-import React, { useState, useEffect } from "react";
+import { useState, } from "react";
 import clsx from "clsx";
 import Button from "../components/Button.jsx";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push } from "firebase/database";
-
+import Header from "./Header.jsx";
 // Your Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyC0G0CULNoh32uSgK3YYsV_rFzPXJOf-7E",
@@ -222,8 +222,9 @@ const JoinOurTeamSection = () => {
   return (
     <section
       id="join-team"
-      className="py-16 bg-s1 min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="py-16 mt-20 bg-s1 min-h-screen flex items-center justify-center relative overflow-hidden"
     >
+      <Header/>
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="max-w-3xl mx-auto text-center mb-16">

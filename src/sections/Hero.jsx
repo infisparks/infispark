@@ -6,7 +6,7 @@ const Hero = () => {
     <section
       className="
         relative 
-        pt-2
+        pt-24
         pb-0                /* Removed extra bottom space */
         max-lg:pt-4 
         max-lg:pb-0         /* Removed extra bottom space for large down */

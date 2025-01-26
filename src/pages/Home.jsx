@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <main className="overflow-hidden">
       <Header />
-      <Hero />
+      <Hero  />
       {/* You can remove excessive <br /> tags and use CSS for spacing */}
       <Cofounders />
       <WhatWeProvide />
