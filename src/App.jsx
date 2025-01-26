@@ -1,34 +1,28 @@
-import Header from "./sections/Header.jsx";
-import Hero from "./sections/Hero.jsx";
-import Features from "./sections/Features.jsx";
-import Pricing from "./sections/Pricing.jsx";
-import Faq from "./sections/Faq.jsx";
-import Testimonials from "./sections/Testimonials.jsx";
-import Download from "./sections/Download.jsx";
-import Footer from "./sections/Footer.jsx";
-import Cofounders from "./sections/Cofounders.jsx";
-import Projects from "./sections/Projects.jsx";
-import JoinOurTeam from "./sections/JoinOurTeamSection.jsx";
-import WhatWeProvide from "./sections/WhatWeProvide.tsx";
+// import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home.jsx';
+import About from './pages/About.jsx';
+import Contact from './pages/Contact.jsx';
+import NotFound from './pages/NotFound.jsx';
+import RegistrationForm from './pages/RegistrationForm.jsx';
+import CertificateInput from './pages/CertificateInput.jsx';
+import CertificatePreview from './pages/CertificatePreview.jsx';
+
 const App = () => {
   return (
-    <main className="overflow-hidden">
-      <Header />
-      <Hero />
-      <br />
-      <br />
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      <Cofounders/>
-      <WhatWeProvide/>
-      <Projects/>
-      <JoinOurTeam/>
-      <Features />
-      {/* <Pricing /> */}
-      <Faq />
-      {/* <Testimonials />
-      <Download /> */}
-      <Footer />
-    </main>
+    <Router>
+      <Routes>
+        {/* Define your routes here */}
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/register" element={<RegistrationForm />} />
+        <Route path="/verify-certificate" element={<CertificateInput />} />
+        <Route path="/certificate-preview/:authCode" element={<CertificatePreview />} />
+        {/* Catch-all route for 404 pages */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 };
 
