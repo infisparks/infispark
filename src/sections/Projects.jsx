@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { projects } from "../constants/index"
 import Button from "../components/Button"
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
-
+import Header from "./Header"
 const Projects = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false)
   const [popupContent, setPopupContent] = useState("")
@@ -94,6 +94,8 @@ const Projects = () => {
 
   return (
     <section id="Project" className="py-16 bg-s2">
+      <Header/>
+
       <style jsx>{`
         .hide-scrollbar {
           scrollbar-width: none;
@@ -111,7 +113,7 @@ const Projects = () => {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center mb-16"
           >
-            <h3 className="text-3xl md:text-4xl font-bold text-p4 mb-4">
+            <h3 className="text-3xl md:text-4xl font-bold text-p4 mb-4 mt-20">
               Our Clients
             </h3>
             <p className="text-p4 text-lg">
