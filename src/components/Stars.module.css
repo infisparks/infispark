@@ -1,0 +1,43 @@
+/* src/components/Stars.module.css */
+
+.star {
+    position: absolute;
+    background-color: white;
+    border-radius: 9999px; /* Fully rounded corners */
+    opacity: 0.75;
+    animation: 
+      twinkle var(--twinkle-duration) infinite,
+      move var(--move-duration) infinite linear,
+      oscillate var(--oscillate-duration) infinite var(--oscillate-easing);
+  }
+  
+  /* Twinkle Animation */
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: 0.75;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  /* Move Animation */
+  @keyframes move {
+    from {
+      transform: translate(0, 0);
+    }
+    to {
+      transform: translate(var(--move-x), var(--move-y));
+    }
+  }
+  
+  /* Oscillate Animation */
+  @keyframes oscillate {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(var(--oscillate-y));
+    }
+  }
+  
