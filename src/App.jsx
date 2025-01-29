@@ -8,7 +8,7 @@ import CertificateInput from './pages/CertificateInput.jsx';
 import CertificatePreview from './pages/CertificatePreview.jsx';
 import JoinOurTeamSection from './sections/JoinOurTeamSection.jsx';
 import Projects from './sections/Projects.jsx';
-
+import AdminPanel from './pages/AdminPanel.jsx';
 const App = () => {
   return (
     <Router>
@@ -21,7 +21,7 @@ const App = () => {
         <Route path="/certificate-preview/:authCode" element={<CertificatePreview />} />
         <Route path="/join-our-team" element={<JoinOurTeamSection />} />
         <Route path="/project" element={<Projects />} />
-
+<Route path="/admin" element={<AdminPanel />} />
         {/* Catch-all for 404 */}
         <Route path="*" element={<NotFound />} />
       </Routes>
