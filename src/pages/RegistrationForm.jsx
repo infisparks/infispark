@@ -189,7 +189,7 @@ const RegistrationForm = () => {
             {/* Success Message */}
             {submissionStatus === "success" && (
               <div className="mb-4 p-4 bg-green-100 text-green-700 rounded">
-                Registration successful! Please check your email for further instructions.
+                Registration successful! 
               </div>
             )}
 
