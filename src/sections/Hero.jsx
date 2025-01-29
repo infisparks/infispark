@@ -13,6 +13,8 @@ const Hero = () => {
         max-lg:pb-0         /* Removed extra bottom space for large down */
         max-md:pt-2
         max-md:pb-0         /* Removed extra bottom space for medium down */
+        bg-gradient-to-b from-[#080D27] to-[#0C1838] /* Added gradient background */
+        text-white /* Ensures text is visible on dark background */
       "
     >
       <Element name="hero">
@@ -59,7 +61,7 @@ const Hero = () => {
           <div className="flex-shrink-0 w-1/2 max-lg:w-full hidden md:block">
             <img
               src="/images/hero.png"
-              className="w-full h-auto object-contain "
+              className="w-full h-auto object-contain"
               alt="hero"
             />
           </div>
