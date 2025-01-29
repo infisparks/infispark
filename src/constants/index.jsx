@@ -487,7 +487,7 @@ export const projects = [
     category: "Mobile App",
     description: "A premium mobile app offering blood and x-ray services.",
     image: "/partner/3.png",
-    link: "no",
+    link: "https://play.google.com/store/apps/datasafety?id=com.infispark.medbliss",
   },
   {
     id: 4,
