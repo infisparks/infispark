@@ -7,6 +7,7 @@ const Hero = () => {
       className="
         relative 
         pt-24
+        mt-20
         pb-0                /* Removed extra bottom space */
         max-lg:pt-4 
         max-lg:pb-0         /* Removed extra bottom space for large down */
