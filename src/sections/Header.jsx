@@ -56,7 +56,7 @@ const Header = () => {
               <ul className="flex max-lg:block max-lg:px-12">
                 <li className="nav-li">
                   {/* External Page Links */}
-                  <NavLink title="Project" to="/Project" />
+                  <NavLink title="Course" to="/course" />
                   <div className="dot" />
                   <NavLink title="Home" to="/" />
                 </li>
