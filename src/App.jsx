@@ -25,7 +25,7 @@ const App = () => {
         <Route path="/join-our-team" element={<JoinOurTeamSection />} />
         <Route path="/project" element={<Projects />} />
         <Route path="/tailwind" element={<Tailwind />} />
-<Route path="/admin" element={<AdminPanel />} />
+<Route path="/admin9958399157" element={<AdminPanel />} />
         <Route path="/course" element={<Course />} />
  
  
