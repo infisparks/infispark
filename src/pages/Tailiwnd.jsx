@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-// List of Tailwind CSS class suggestions for autocomplete (not used directly in every section)
+/* ---------------------------
+   Global Tailwind Classes
+---------------------------- */
 const tailwindClasses = [
   "flex", "grid", "justify-center", "justify-end", "justify-between", "items-center",
   "gap-4", "p-4", "p-8", "p-6", "m-4", "m-6", "m-8",
@@ -9,12 +11,76 @@ const tailwindClasses = [
   "border-8", "border-red-500", "border-blue-500", "border-green-500", "border-yellow-500",
   "border-purple-500", "border-dashed", "border-double", "shadow-sm", "shadow-md",
   "shadow-lg", "rounded", "rounded-lg", "rounded-full", "transition-all", "duration-500",
-  // Additional suggestions
   "sm:text-sm", "md:text-lg", "lg:text-xl", "grid-cols-2", "grid-cols-3", "hover:bg-blue-500",
   "hover:scale-105", "transform", "transition-transform", "duration-300", "opacity-50",
   "hover:opacity-100", "flex-wrap", "text-red-500", "text-blue-500", "w-32", "h-32",
   "relative", "absolute", "inset-0", "italic", "underline", "uppercase"
 ];
+
+/* ---------------------------
+   Class Descriptions Mapping
+   (Descriptions in Hinglish)
+---------------------------- */
+const classDescriptions = {
+  "flex": "Flex ke madad se output mein tino box alag alag row mein the, but abhi vo ek row mein ho gaye hain. Flex ki madad se koi bhi box of content ko ek row mein convert karna hai, to flex use karte hain.",
+  "grid": "Grid se aap content ko rows aur columns mein arrange kar sakte hain.",
+  "justify-center": "justify-center se elements center align hote hain horizontally.",
+  "justify-end": "justify-end se elements container ke end par align hote hain.",
+  "justify-between": "justify-between se elements ke beech mein equal space milta hai.",
+  "justify-evenly": "justify-evenly se elements evenly distribute hote hain.",
+  "gap-4": "gap-4  se elements ke beech mein 4 space ka gap add hota hai.",
+  "p-4": "p-4 se element ke charo taraf padding add hoti hai. Padding ka matlab hai ki element ke andar ke content aur element ke border ke beech ka space badhta hai. Jaise agar aapne p-4 use kiya, to box ke andar ke content se 4 side se thoda extra space milta hai, jaise output mein dikh raha hai.",
+"p-8": "p-8 se zyada padding add hoti hai. Jab aap p-8 use karte hain, to element ke andar ke content ke charo taraf aur zyada space milta hai, jaise output mein dikh raha hai.",
+"m-4": "m-4 se element ke charo taraf margin add hota hai. Margin ka matlab hai ki element ke bahar ke space ko increase karna. Jab aap m-4 use karte hain, to box ke bahar ke charo taraf space badh jata hai, jo ki element ko dusre elements se door kar deta hai.",
+"m-8": "m-8 se zyada margin add hoti hai. Jab aap m-8 use karte hain, to box ke bahar ke charo taraf aur zyada space milta hai, jo element ko aur dusre elements se door kar deta hai.",
+  "text-xl": "text-xl se text ka size thoda bada hota hai.",
+  "text-2xl": "text-2xl se text aur bada hota hai.",
+  "text-3xl": "text-3xl se text sabse bada hota hai.",
+  "font-bold": "font-bold se text bold ho jata hai.",
+  "bg-blue-500": "bg-blue-500 se background blue ho jata hai.",
+  "bg-green-500": "bg-green-500 se background green ho jata hai.",
+  "bg-red-500": "bg-red-500 se background red ho jata hai.",
+  "bg-purple-500": "bg-purple-500 se background purple ho jata hai.",
+  "border": "border se element ke around border lag jata hai.",
+  "rounded": "rounded se element ke corners gol ho jate hain.",
+  "shadow-sm": "shadow-sm se halka shadow add hota hai.",
+  "shadow-md": "shadow-md se medium shadow add hota hai.",
+  "shadow-lg": "shadow-lg se badi shadow add hoti hai.",
+  "hover:bg-blue-500": "hover:bg-blue-500 se hover par background blue ho jata hai.",
+  "hover:scale-105": "hover:scale-105 se element hover par thoda bada ho jata hai.",
+  "transform": "transform se CSS transform enable hota hai.",
+  "transition-transform": "transition-transform se transformation smooth hota hai.",
+  "duration-300": "duration-300 se transition 300 milliseconds ka hota hai.",
+  "opacity-50": "opacity-50 se element half transparent ho jata hai.",
+  "hover:opacity-100": "hover:opacity-100 se hover par element fully opaque ho jata hai.",
+  "flex-wrap": "flex-wrap se elements wrap hone lagte hain jab space kam ho.",
+  "text-red-500": "text-red-500 se text red ho jata hai.",
+  "text-blue-500": "text-blue-500 se text blue ho jata hai.",
+  "w-32": "w-32 se element ki width fix ho jati hai.",
+  "h-32": "h-32 se element ki height fix ho jati hai.",
+  "relative": "relative se element ka position relative ho jata hai.",
+  "absolute": "absolute se element absolute position le leta hai.",
+  "inset-0": "inset-0 se element container ke har side se chipak jata hai.",
+  "italic": "italic se text italic ho jata hai.",
+  "underline": "underline se text underline ho jata hai.",
+  "uppercase": "uppercase se text capital letters mein convert ho jata hai.",
+  // Add more descriptions as needed for other classes...
+};
+
+/* ---------------------------
+   Speech Synthesis Function
+---------------------------- */
+function speakDescription(suggestion) {
+  if ('speechSynthesis' in window) {
+    const description = classDescriptions[suggestion];
+    if (description) {
+      const utterance = new SpeechSynthesisUtterance(description);
+      // Setting language to Hindi so that Hinglish sounds natural
+      utterance.lang = 'hi-IN';
+      window.speechSynthesis.speak(utterance);
+    }
+  }
+}
 
 /**
  * Helper function that toggles a CSS class in the given string.
@@ -31,14 +97,27 @@ function toggleClass(prev, suggestion) {
   }
 }
 
-// A common component to display class suggestion buttons
-function ClassButtons({ suggestions, onButtonClick }) {
+/* ---------------------------
+   Updated ClassButtons Component
+   (Now accepts currentClasses and aiTeacher props)
+---------------------------- */
+function ClassButtons({ suggestions, onButtonClick, currentClasses, aiTeacher }) {
+  const handleClick = (s) => {
+    // Determine if the suggestion is being added:
+    const tokens = currentClasses.trim().split(/\s+/);
+    // Only speak if AI teacher is enabled and the class is not already present (i.e. it’s being added)
+    if (aiTeacher && !tokens.includes(s)) {
+      speakDescription(s);
+    }
+    onButtonClick(s);
+  };
+
   return (
     <div className="flex flex-wrap gap-2 mt-2">
       {suggestions.map((s) => (
         <button
           key={s}
-          onClick={() => onButtonClick(s)}
+          onClick={() => handleClick(s)}
           className="px-3 py-1 border rounded hover:bg-gray-200"
         >
           {s}
@@ -48,7 +127,9 @@ function ClassButtons({ suggestions, onButtonClick }) {
   );
 }
 
-// AutocompleteTextarea Component with updated input and suggestion dropdown background
+/* ---------------------------
+   AutocompleteTextarea Component
+---------------------------- */
 function AutocompleteTextarea({ value, onChange, placeholder }) {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -78,6 +159,11 @@ function AutocompleteTextarea({ value, onChange, placeholder }) {
     const syntheticEvent = { target: { value: newValue } };
     onChange(syntheticEvent);
     setShowSuggestions(false);
+    // Speak on suggestion click only if the class is being added:
+    const currentTokens = value.trim().split(/\s+/);
+    if (!currentTokens.includes(suggestion)) {
+      speakDescription(suggestion);
+    }
   };
 
   return (
@@ -106,16 +192,19 @@ function AutocompleteTextarea({ value, onChange, placeholder }) {
 }
 
 /* =======================
-   30 Tailwind Concepts
+   Shared Card Classes
    ======================= */
-
-// Shared card classes for sections
 const cardClasses = "border rounded p-4 shadow-sm bg-[#102B4C] text-white";
 
+/* =======================
+   30 Tailwind Concepts Sections
+   (Each now receives an aiTeacher prop and passes the currentClasses to ClassButtons)
+   ======================= */
+
 // 1. Flex Layout
-function SectionFlex() {
+function SectionFlex({ aiTeacher }) {
   const [classes, setClasses] = useState("");
-  const suggestions = ["flex", "gap-4", "justify-center", "justify-end", "justify-between"];
+  const suggestions = ["flex", "gap-4", "justify-center", "justify-end", "justify-between", "justify-evenly"];
   const handleChange = (e) => setClasses(e.target.value);
   const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
   return (
@@ -128,7 +217,12 @@ function SectionFlex() {
             onChange={handleChange}
             placeholder='e.g., "flex gap-4 justify-center"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle classes by clicking buttons.</strong>
           </p>
@@ -150,7 +244,7 @@ function SectionFlex() {
 }
 
 // 2. Text Size
-function SectionTextSize() {
+function SectionTextSize({ aiTeacher }) {
   const [classes, setClasses] = useState("");
   const suggestions = ["text-xl", "text-2xl", "text-3xl", "font-bold"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -165,7 +259,12 @@ function SectionTextSize() {
             onChange={handleChange}
             placeholder='e.g., "text-3xl font-bold"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle text size classes.</strong>
           </p>
@@ -184,7 +283,7 @@ function SectionTextSize() {
 }
 
 // 3. Justify Content
-function SectionJustifyContent() {
+function SectionJustifyContent({ aiTeacher }) {
   const [classes, setClasses] = useState("");
   const suggestions = ["justify-center", "justify-end", "justify-between"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -199,7 +298,12 @@ function SectionJustifyContent() {
             onChange={handleChange}
             placeholder='e.g., "justify-center"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle justification.</strong>
           </p>
@@ -220,7 +324,7 @@ function SectionJustifyContent() {
 }
 
 // 4. Background Color
-function SectionBackground() {
+function SectionBackground({ aiTeacher }) {
   const [classes, setClasses] = useState("");
   const suggestions = ["bg-blue-500", "bg-green-500", "bg-purple-500"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -235,7 +339,12 @@ function SectionBackground() {
             onChange={handleChange}
             placeholder='e.g., "bg-purple-500"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle background colors.</strong>
           </p>
@@ -254,7 +363,7 @@ function SectionBackground() {
 }
 
 // 5. Spacing (Padding & Margin)
-function SectionSpacing() {
+function SectionSpacing({ aiTeacher }) {
   const [classes, setClasses] = useState("");
   const suggestions = ["p-4", "p-8", "m-4", "m-8", "gap-4"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -269,7 +378,12 @@ function SectionSpacing() {
             onChange={handleChange}
             placeholder='e.g., "p-4 m-4"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle spacing classes.</strong>
           </p>
@@ -289,7 +403,7 @@ function SectionSpacing() {
 }
 
 // 6. Border & Rounded
-function SectionBorderRounded() {
+function SectionBorderRounded({ aiTeacher }) {
   const [classes, setClasses] = useState("");
   const suggestions = ["border", "rounded", "shadow-sm", "border-2", "border-dashed"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -304,7 +418,12 @@ function SectionBorderRounded() {
             onChange={handleChange}
             placeholder='e.g., "border-2 border-red-500 border-dashed shadow-sm"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle border and rounding.</strong>
           </p>
@@ -323,7 +442,7 @@ function SectionBorderRounded() {
 }
 
 // 7. Responsive Design
-function SectionResponsiveDesign() {
+function SectionResponsiveDesign({ aiTeacher }) {
   const [classes, setClasses] = useState("sm:text-sm md:text-lg lg:text-xl");
   const suggestions = ["sm:text-sm", "md:text-lg", "lg:text-xl"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -338,7 +457,12 @@ function SectionResponsiveDesign() {
             onChange={handleChange}
             placeholder='e.g., "sm:text-sm md:text-lg lg:text-xl"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle responsive classes.</strong>
           </p>
@@ -357,7 +481,7 @@ function SectionResponsiveDesign() {
 }
 
 // 8. Grid Layout
-function SectionGridLayout() {
+function SectionGridLayout({ aiTeacher }) {
   const [classes, setClasses] = useState("grid grid-cols-2 gap-4");
   const suggestions = ["grid", "grid-cols-2", "grid-cols-3", "gap-4"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -372,7 +496,12 @@ function SectionGridLayout() {
             onChange={handleChange}
             placeholder='e.g., "grid grid-cols-2 gap-4"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle grid classes.</strong>
           </p>
@@ -394,7 +523,7 @@ function SectionGridLayout() {
 }
 
 // 9. Hover Effects
-function SectionHoverEffects() {
+function SectionHoverEffects({ aiTeacher }) {
   const [classes, setClasses] = useState("hover:bg-blue-500 hover:text-white");
   const suggestions = ["hover:bg-blue-500", "hover:text-white"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -409,7 +538,12 @@ function SectionHoverEffects() {
             onChange={handleChange}
             placeholder='e.g., "hover:bg-blue-500 hover:text-white"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle hover classes.</strong>
           </p>
@@ -425,7 +559,7 @@ function SectionHoverEffects() {
 }
 
 // 10. Transition & Animation
-function SectionTransitionAnimation() {
+function SectionTransitionAnimation({ aiTeacher }) {
   const [classes, setClasses] = useState("transform hover:scale-105 transition-transform duration-300");
   const suggestions = ["transform", "hover:scale-105", "transition-transform", "duration-300"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -440,7 +574,12 @@ function SectionTransitionAnimation() {
             onChange={handleChange}
             placeholder='e.g., "transform hover:scale-105 transition-transform duration-300"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle transition classes.</strong>
           </p>
@@ -456,7 +595,7 @@ function SectionTransitionAnimation() {
 }
 
 // 11. Opacity
-function SectionOpacity() {
+function SectionOpacity({ aiTeacher }) {
   const [classes, setClasses] = useState("opacity-50 hover:opacity-100 transition-opacity duration-300");
   const suggestions = ["opacity-50", "hover:opacity-100", "transition-opacity", "duration-300"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -471,7 +610,12 @@ function SectionOpacity() {
             onChange={handleChange}
             placeholder='e.g., "opacity-50 hover:opacity-100 transition-opacity duration-300"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle opacity classes.</strong>
           </p>
@@ -487,7 +631,7 @@ function SectionOpacity() {
 }
 
 // 12. Flex Wrap
-function SectionFlexWrap() {
+function SectionFlexWrap({ aiTeacher }) {
   const [classes, setClasses] = useState("flex flex-wrap gap-4");
   const suggestions = ["flex", "flex-wrap", "gap-4"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -502,7 +646,12 @@ function SectionFlexWrap() {
             onChange={handleChange}
             placeholder='e.g., "flex flex-wrap gap-4"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle flex wrap classes.</strong>
           </p>
@@ -525,7 +674,7 @@ function SectionFlexWrap() {
 }
 
 // 13. Text Color
-function SectionTextColor() {
+function SectionTextColor({ aiTeacher }) {
   const [classes, setClasses] = useState("text-red-500");
   const suggestions = ["text-red-500", "text-blue-500", "text-green-500"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -540,7 +689,12 @@ function SectionTextColor() {
             onChange={handleChange}
             placeholder='e.g., "text-red-500"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle text color.</strong>
           </p>
@@ -556,7 +710,7 @@ function SectionTextColor() {
 }
 
 // 14. Sizing (Width & Height)
-function SectionSizing() {
+function SectionSizing({ aiTeacher }) {
   const [classes, setClasses] = useState("w-32 h-32");
   const suggestions = ["w-32", "h-32", "w-64", "h-64"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -571,7 +725,12 @@ function SectionSizing() {
             onChange={handleChange}
             placeholder='e.g., "w-32 h-32"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle sizing classes.</strong>
           </p>
@@ -587,7 +746,7 @@ function SectionSizing() {
 }
 
 // 15. Positioning
-function SectionPositioning() {
+function SectionPositioning({ aiTeacher }) {
   const [parentClasses, setParentClasses] = useState("relative");
   const [childClasses, setChildClasses] = useState("absolute inset-0 flex items-center justify-center");
   const parentSuggestions = ["relative", "static", "absolute", "fixed"];
@@ -607,7 +766,12 @@ function SectionPositioning() {
             onChange={handleParentChange}
             placeholder='e.g., "relative"'
           />
-          <ClassButtons suggestions={parentSuggestions} onButtonClick={handleParentButtonClick} />
+          <ClassButtons
+            suggestions={parentSuggestions}
+            onButtonClick={handleParentButtonClick}
+            currentClasses={parentClasses}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Try: relative</strong>
           </p>
@@ -617,7 +781,12 @@ function SectionPositioning() {
             onChange={handleChildChange}
             placeholder='e.g., "absolute inset-0 flex items-center justify-center"'
           />
-          <ClassButtons suggestions={childSuggestions} onButtonClick={handleChildButtonClick} />
+          <ClassButtons
+            suggestions={childSuggestions}
+            onButtonClick={handleChildButtonClick}
+            currentClasses={childClasses}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Try: absolute inset-0</strong>
           </p>
@@ -638,7 +807,7 @@ function SectionPositioning() {
 }
 
 // 16. Font Styles
-function SectionFontStyles() {
+function SectionFontStyles({ aiTeacher }) {
   const [classes, setClasses] = useState("italic underline uppercase");
   const suggestions = ["italic", "underline", "uppercase", "normal-case"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -653,7 +822,12 @@ function SectionFontStyles() {
             onChange={handleChange}
             placeholder='e.g., "italic underline uppercase"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle font styles.</strong>
           </p>
@@ -669,7 +843,7 @@ function SectionFontStyles() {
 }
 
 // 17. Shadow (Box Shadows)
-function SectionShadow() {
+function SectionShadow({ aiTeacher }) {
   const [classes, setClasses] = useState("shadow-sm");
   const suggestions = ["shadow-sm", "shadow-md", "shadow-lg", "shadow-none"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -684,7 +858,12 @@ function SectionShadow() {
             onChange={handleChange}
             placeholder='e.g., "shadow-sm"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle shadow effects.</strong>
           </p>
@@ -703,7 +882,7 @@ function SectionShadow() {
 }
 
 // 18. Animation (Predefined animations)
-function SectionAnimation() {
+function SectionAnimation({ aiTeacher }) {
   const [classes, setClasses] = useState("animate-spin");
   const suggestions = ["animate-spin", "animate-ping", "animate-bounce", "animate-pulse"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -718,7 +897,12 @@ function SectionAnimation() {
             onChange={handleChange}
             placeholder='e.g., "animate-spin"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle animations.</strong>
           </p>
@@ -732,7 +916,7 @@ function SectionAnimation() {
 }
 
 // 19. Ring (Focus rings)
-function SectionRing() {
+function SectionRing({ aiTeacher }) {
   const [classes, setClasses] = useState("ring-2 ring-offset-2 ring-indigo-500");
   const suggestions = ["ring-2", "ring-4", "ring-offset-2", "ring-offset-4", "ring-indigo-500", "ring-red-500"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -747,7 +931,12 @@ function SectionRing() {
             onChange={handleChange}
             placeholder='e.g., "ring-2 ring-offset-2 ring-indigo-500"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle ring classes.</strong>
           </p>
@@ -765,7 +954,7 @@ function SectionRing() {
 }
 
 // 20. Outline
-function SectionOutline() {
+function SectionOutline({ aiTeacher }) {
   const [classes, setClasses] = useState("outline-none focus:outline");
   const suggestions = ["outline-none", "focus:outline", "focus:outline-none"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -780,7 +969,12 @@ function SectionOutline() {
             onChange={handleChange}
             placeholder='e.g., "outline-none focus:outline"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle outline classes.</strong>
           </p>
@@ -798,7 +992,7 @@ function SectionOutline() {
 }
 
 // 21. Rotate (Transform rotate)
-function SectionRotate() {
+function SectionRotate({ aiTeacher }) {
   const [classes, setClasses] = useState("rotate-45");
   const suggestions = ["rotate-45", "rotate-90", "rotate-180", "rotate-0"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -813,7 +1007,12 @@ function SectionRotate() {
             onChange={handleChange}
             placeholder='e.g., "rotate-45"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle rotation classes.</strong>
           </p>
@@ -827,7 +1026,7 @@ function SectionRotate() {
 }
 
 // 22. Scale (Transform scale)
-function SectionScale() {
+function SectionScale({ aiTeacher }) {
   const [classes, setClasses] = useState("scale-90");
   const suggestions = ["scale-90", "scale-100", "scale-110"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -842,7 +1041,12 @@ function SectionScale() {
             onChange={handleChange}
             placeholder='e.g., "scale-90"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle scale classes.</strong>
           </p>
@@ -856,7 +1060,7 @@ function SectionScale() {
 }
 
 // 23. Skew (Transform skew)
-function SectionSkew() {
+function SectionSkew({ aiTeacher }) {
   const [classes, setClasses] = useState("skew-x-6");
   const suggestions = ["skew-x-6", "skew-x-12", "skew-y-6", "skew-y-12", "skew-x-0", "skew-y-0"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -871,7 +1075,12 @@ function SectionSkew() {
             onChange={handleChange}
             placeholder='e.g., "skew-x-6"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle skew classes.</strong>
           </p>
@@ -885,7 +1094,7 @@ function SectionSkew() {
 }
 
 // 24. Object Fit
-function SectionObjectFit() {
+function SectionObjectFit({ aiTeacher }) {
   const [classes, setClasses] = useState("object-cover");
   const suggestions = ["object-cover", "object-contain", "object-fill", "object-none"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -900,7 +1109,12 @@ function SectionObjectFit() {
             onChange={handleChange}
             placeholder='e.g., "object-cover"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle object-fit classes.</strong>
           </p>
@@ -918,7 +1132,7 @@ function SectionObjectFit() {
 }
 
 // 25. Object Position
-function SectionObjectPosition() {
+function SectionObjectPosition({ aiTeacher }) {
   const [classes, setClasses] = useState("object-center");
   const suggestions = ["object-center", "object-top", "object-bottom", "object-left", "object-right"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -933,7 +1147,12 @@ function SectionObjectPosition() {
             onChange={handleChange}
             placeholder='e.g., "object-center"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle object-position classes.</strong>
           </p>
@@ -953,7 +1172,7 @@ function SectionObjectPosition() {
 }
 
 // 26. Overflow
-function SectionOverflow() {
+function SectionOverflow({ aiTeacher }) {
   const [classes, setClasses] = useState("overflow-auto");
   const suggestions = ["overflow-auto", "overflow-hidden", "overflow-scroll"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -968,7 +1187,12 @@ function SectionOverflow() {
             onChange={handleChange}
             placeholder='e.g., "overflow-auto"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle overflow classes.</strong>
           </p>
@@ -990,7 +1214,7 @@ function SectionOverflow() {
 }
 
 // 27. Z-Index
-function SectionZIndex() {
+function SectionZIndex({ aiTeacher }) {
   const [classes, setClasses] = useState("z-10");
   const suggestions = ["z-0", "z-10", "z-20", "z-30", "z-40", "z-50"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -1005,7 +1229,12 @@ function SectionZIndex() {
             onChange={handleChange}
             placeholder='e.g., "z-10"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle z-index classes.</strong>
           </p>
@@ -1027,7 +1256,7 @@ function SectionZIndex() {
 }
 
 // 28. Cursor
-function SectionCursor() {
+function SectionCursor({ aiTeacher }) {
   const [classes, setClasses] = useState("cursor-pointer");
   const suggestions = ["cursor-pointer", "cursor-default", "cursor-not-allowed"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -1042,7 +1271,12 @@ function SectionCursor() {
             onChange={handleChange}
             placeholder='e.g., "cursor-pointer"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle cursor classes.</strong>
           </p>
@@ -1056,7 +1290,7 @@ function SectionCursor() {
 }
 
 // 29. Pointer Events
-function SectionPointerEvents() {
+function SectionPointerEvents({ aiTeacher }) {
   const [classes, setClasses] = useState("pointer-events-auto");
   const suggestions = ["pointer-events-auto", "pointer-events-none"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -1071,7 +1305,12 @@ function SectionPointerEvents() {
             onChange={handleChange}
             placeholder='e.g., "pointer-events-auto"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle pointer event classes.</strong>
           </p>
@@ -1087,7 +1326,7 @@ function SectionPointerEvents() {
 }
 
 // 30. User Select
-function SectionUserSelect() {
+function SectionUserSelect({ aiTeacher }) {
   const [classes, setClasses] = useState("select-none");
   const suggestions = ["select-none", "select-text", "select-all", "select-auto"];
   const handleChange = (e) => setClasses(e.target.value);
@@ -1102,7 +1341,12 @@ function SectionUserSelect() {
             onChange={handleChange}
             placeholder='e.g., "select-none"'
           />
-          <ClassButtons suggestions={suggestions} onButtonClick={handleButtonClick} />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
           <p className="text-sm text-gray-300 mt-2">
             <strong>Toggle user-select classes.</strong>
           </p>
@@ -1120,47 +1364,67 @@ function SectionUserSelect() {
 /* =======================
    Main App Component
    ======================= */
-
 function App() {
+  // State for the AI Teacher toggle; by default it is off (false)
+  const [aiTeacher, setAiTeacher] = useState(false);
+
   return (
     <div className="min-h-screen p-4 space-y-8" style={{ backgroundColor: "#0C1838" }}>
-      <h1 className="text-3xl font-bold text-center mb-4 text-white">
-        Tailwind Class Analyzer
-      </h1>
-      <p className="text-center text-gray-300 mb-8">
-        Each section demonstrates a common Tailwind CSS concept. Type your classes or use the buttons to toggle them and see the live preview!
-      </p>
+      {/* Professional AI Teacher Toggle Button */}
+      <div className="flex flex-col items-center justify-center mb-8">
+        <button
+          onClick={() => setAiTeacher(prev => !prev)}
+          className="flex items-center justify-center bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:from-purple-600 hover:to-blue-600 transition-all text-lg"
+        >
+          {/* Example Premium AI Icon */}
+          <svg
+            className="w-6 h-6 mr-2"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M12 2a10 10 0 100 20 10 10 0 000-20zM9 10a1 1 0 112 0v2a1 1 0 11-2 0v-2zm4 0a1 1 0 112 0v2a1 1 0 11-2 0v-2z" />
+          </svg>
+          <span>{aiTeacher ? "Disable AI Teacher" : "Enable AI Teacher"}</span>
+        </button>
+        <p className="mt-4 text-white text-center text-xl font-semibold">
+          Each section demonstrates a common Tailwind CSS concept.
+          <br />
+          Type your classes or use the buttons to toggle them and see the live preview update!
+        </p>
+      </div>
+
       {/* 30 Sections */}
-      <SectionFlex />
-      <SectionTextSize />
-      <SectionJustifyContent />
-      <SectionBackground />
-      <SectionSpacing />
-      <SectionBorderRounded />
-      <SectionResponsiveDesign />
-      <SectionGridLayout />
-      <SectionHoverEffects />
-      <SectionTransitionAnimation />
-      <SectionOpacity />
-      <SectionFlexWrap />
-      <SectionTextColor />
-      <SectionSizing />
-      <SectionPositioning />
-      <SectionFontStyles />
-      <SectionShadow />
-      <SectionAnimation />
-      <SectionRing />
-      <SectionOutline />
-      <SectionRotate />
-      <SectionScale />
-      <SectionSkew />
-      <SectionObjectFit />
-      <SectionObjectPosition />
-      <SectionOverflow />
-      <SectionZIndex />
-      <SectionCursor />
-      <SectionPointerEvents />
-      <SectionUserSelect />
+      <SectionFlex aiTeacher={aiTeacher} />
+      <SectionTextSize aiTeacher={aiTeacher} />
+      <SectionJustifyContent aiTeacher={aiTeacher} />
+      <SectionBackground aiTeacher={aiTeacher} />
+      <SectionSpacing aiTeacher={aiTeacher} />
+      <SectionBorderRounded aiTeacher={aiTeacher} />
+      <SectionResponsiveDesign aiTeacher={aiTeacher} />
+      <SectionGridLayout aiTeacher={aiTeacher} />
+      <SectionHoverEffects aiTeacher={aiTeacher} />
+      <SectionTransitionAnimation aiTeacher={aiTeacher} />
+      <SectionOpacity aiTeacher={aiTeacher} />
+      <SectionFlexWrap aiTeacher={aiTeacher} />
+      <SectionTextColor aiTeacher={aiTeacher} />
+      <SectionSizing aiTeacher={aiTeacher} />
+      <SectionPositioning aiTeacher={aiTeacher} />
+      <SectionFontStyles aiTeacher={aiTeacher} />
+      <SectionShadow aiTeacher={aiTeacher} />
+      <SectionAnimation aiTeacher={aiTeacher} />
+      <SectionRing aiTeacher={aiTeacher} />
+      <SectionOutline aiTeacher={aiTeacher} />
+      <SectionRotate aiTeacher={aiTeacher} />
+      <SectionScale aiTeacher={aiTeacher} />
+      <SectionSkew aiTeacher={aiTeacher} />
+      <SectionObjectFit aiTeacher={aiTeacher} />
+      <SectionObjectPosition aiTeacher={aiTeacher} />
+      <SectionOverflow aiTeacher={aiTeacher} />
+      <SectionZIndex aiTeacher={aiTeacher} />
+      <SectionCursor aiTeacher={aiTeacher} />
+      <SectionPointerEvents aiTeacher={aiTeacher} />
+      <SectionUserSelect aiTeacher={aiTeacher} />
       <div className="text-center mt-8 text-gray-300">
         <p>
           <strong>Tips:</strong> Click the buttons or type your own Tailwind CSS classes to see the live preview update!
