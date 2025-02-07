@@ -22,60 +22,83 @@ const tailwindClasses = [
    (Descriptions in Hinglish)
 ---------------------------- */
 const classDescriptions = {
-  "flex": "Flex ke madad se output mein tino box alag alag row mein the, but abhi vo ek row mein ho gaye hain. Flex ki madad se koi bhi box of content ko ek row mein convert karna hai, to flex use karte hain.",
-  "grid": "Grid se aap content ko rows aur columns mein arrange kar sakte hain.",
-  "justify-center": "justify-center se elements center align hote hain horizontally.",
-  "justify-end": "justify-end se elements container ke end par align hote hain.",
-  "justify-between": "justify-between se elements ke beech mein equal space milta hai.",
-  "justify-evenly": "justify-evenly se elements evenly distribute hote hain.",
-  "gap-4": "gap-4  se elements ke beech mein 4 space ka gap add hota hai.",
-  "p-4": "p-4 se element ke charo taraf padding add hoti hai. Padding ka matlab hai ki element ke andar ke content aur element ke border ke beech ka space badhta hai. Jaise agar aapne p-4 use kiya, to box ke andar ke content se 4 side se thoda extra space milta hai, jaise output mein dikh raha hai.",
-"p-8": "p-8 se zyada padding add hoti hai. Jab aap p-8 use karte hain, to element ke andar ke content ke charo taraf aur zyada space milta hai, jaise output mein dikh raha hai.",
-"m-4": "m-4 se element ke charo taraf margin add hota hai. Margin ka matlab hai ki element ke bahar ke space ko increase karna. Jab aap m-4 use karte hain, to box ke bahar ke charo taraf space badh jata hai, jo ki element ko dusre elements se door kar deta hai.",
-"m-8": "m-8 se zyada margin add hoti hai. Jab aap m-8 use karte hain, to box ke bahar ke charo taraf aur zyada space milta hai, jo element ko aur dusre elements se door kar deta hai.",
-  "text-xl": "text-xl se text ka size thoda bada hota hai.",
-  "text-2xl": "text-2xl se text aur bada hota hai.",
-  "text-3xl": "text-3xl se text sabse bada hota hai.",
+  "flex": "flex se container flexbox ban jata hai. Example: Items ek row mein aate hain.",
+  "grid": "grid se container ko grid layout banate hain. Example: Items columns aur rows mein set hote hain.",
+  "justify-center": "justify-center se flex items horizontal center mein align hote hain.",
+  "justify-end": "justify-end se flex items right side par align ho jate hain.",
+  "justify-between": "justify-between se items ke beech equal gap milta hai.",
+  "items-center": "items-center se flex items vertically center ho jate hain.",
+  "gap-4": "gap-4 se items ke beech 1rem (16px) gap add hota hai.",
+  "p-4": "p-4 se element ke andar 1rem padding add hoti hai. Example: Box ke andar content aur border ke beech space.",
+  "p-8": "p-8 se element ke andar 2rem padding add hoti hai. Example: Zyada space inside the box.",
+  "p-6": "p-6 se element ke andar 1.5rem padding add hoti hai.",
+  "m-4": "m-4 se element ke bahar 1rem margin add hota hai. Example: Box ke bahar space badhta hai.",
+  "m-6": "m-6 se element ke bahar 1.5rem margin add hota hai.",
+  "m-8": "m-8 se element ke bahar 2rem margin add hota hai.",
+  "text-xl": "text-xl se text ka size 1.25rem hota hai. Example: Thoda bada text.",
+  "text-2xl": "text-2xl se text ka size 1.5rem hota hai. Example: Aur bada text.",
+  "text-3xl": "text-3xl se text ka size 1.875rem hota hai. Example: Bahut bada text.",
+  "text-4xl" : "text-4xl se text ka size 1.875rem hota hai. Example: Bahut bada text.",
   "font-bold": "font-bold se text bold ho jata hai.",
-  "bg-blue-500": "bg-blue-500 se background blue ho jata hai.",
+  "bg-blue-500": "bg-blue-500 se element ka background blue ho jata hai. Example: Blue box.",
   "bg-green-500": "bg-green-500 se background green ho jata hai.",
   "bg-red-500": "bg-red-500 se background red ho jata hai.",
+  "bg-yellow-500": "bg-yellow-500 se background yellow ho jata hai.",
   "bg-purple-500": "bg-purple-500 se background purple ho jata hai.",
-  "border": "border se element ke around border lag jata hai.",
-  "rounded": "rounded se element ke corners gol ho jate hain.",
-  "shadow-sm": "shadow-sm se halka shadow add hota hai.",
-  "shadow-md": "shadow-md se medium shadow add hota hai.",
-  "shadow-lg": "shadow-lg se badi shadow add hoti hai.",
-  "hover:bg-blue-500": "hover:bg-blue-500 se hover par background blue ho jata hai.",
-  "hover:scale-105": "hover:scale-105 se element hover par thoda bada ho jata hai.",
-  "transform": "transform se CSS transform enable hota hai.",
-  "transition-transform": "transition-transform se transformation smooth hota hai.",
-  "duration-300": "duration-300 se transition 300 milliseconds ka hota hai.",
-  "opacity-50": "opacity-50 se element half transparent ho jata hai.",
-  "hover:opacity-100": "hover:opacity-100 se hover par element fully opaque ho jata hai.",
-  "flex-wrap": "flex-wrap se elements wrap hone lagte hain jab space kam ho.",
+  "border": "border se element ke around default border lag jata hai.",
+  "border-2": "border-2 se element ke around 2px border lagta hai.",
+  "border-4": "border-4 se element ke around 4px border lagta hai.",
+  "border-8": "border-8 se element ke around 8px border lagta hai.",
+  "border-red-500": "border-red-500 se element ka border red ho jata hai.",
+  "border-blue-500": "border-blue-500 se border blue ho jata hai.",
+  "border-green-500": "border-green-500 se border green ho jata hai.",
+  "border-yellow-500": "border-yellow-500 se border yellow ho jata hai.",
+  "border-purple-500": "border-purple-500 se border purple ho jata hai.",
+  "border-dashed": "border-dashed se border dashed style ka ho jata hai.",
+  "border-double": "border-double se border double line style ka ho jata hai.",
+  "shadow-sm": "shadow-sm se halka shadow add hota hai. Example: Chhota shadow effect.",
+  "shadow-md": "shadow-md se medium shadow effect hota hai.",
+  "shadow-lg": "shadow-lg se bada shadow effect hota hai.",
+  "rounded": "rounded se element ke corners round ho jate hain.",
+  "rounded-lg": "rounded-lg se corners thode zyada round ho jate hain.",
+  "rounded-full": "rounded-full se element completely circular ho jata hai. Example: Avatar.",
+  "transition-all": "transition-all se sabhi changes smooth transition ke sath hote hain.",
+  "duration-500": "duration-500 se transition 500ms ka hota hai.",
+  "sm:text-sm": "sm:text-sm se small screens pe text size chhota ho jata hai.",
+  "md:text-lg": "md:text-lg se medium screens pe text size bada ho jata hai.",
+  "lg:text-xl": "lg:text-xl se large screens pe text aur bada ho jata hai.",
+  "grid-cols-2": "grid-cols-2 se grid mein 2 columns bante hain.",
+  "grid-cols-3": "grid-cols-3 se grid mein 3 columns bante hain.",
+  "hover:bg-blue-500": "hover:bg-blue-500 se mouse hover pe background blue ho jata hai.",
+  "hover:scale-105": "hover:scale-105 se mouse hover pe element 105% scale ho jata hai.",
+  "transform": "transform se element ko rotate, scale, etc. kar sakte hain.",
+  "transition-transform": "transition-transform se transform changes smooth hote hain.",
+  "duration-300": "duration-300 se transition 300ms ka hota hai.",
+  "opacity-50": "opacity-50 se element 50% transparent ho jata hai.",
+  "hover:opacity-100": "hover:opacity-100 se hover pe element fully opaque ho jata hai.",
+  "flex-wrap": "flex-wrap se flex container ke items wrap ho jate hain jab space kam ho.",
   "text-red-500": "text-red-500 se text red ho jata hai.",
   "text-blue-500": "text-blue-500 se text blue ho jata hai.",
-  "w-32": "w-32 se element ki width fix ho jati hai.",
-  "h-32": "h-32 se element ki height fix ho jati hai.",
-  "relative": "relative se element ka position relative ho jata hai.",
-  "absolute": "absolute se element absolute position le leta hai.",
-  "inset-0": "inset-0 se element container ke har side se chipak jata hai.",
+  "w-32": "w-32 se element ki width 8rem (128px) fix ho jati hai.",
+  "h-32": "h-32 se element ki height 8rem (128px) fix ho jati hai.",
+  "relative": "relative se element ki position relative ho jati hai. Example: A child element positioned relative to its parent.",
+  "absolute": "absolute se element ki position absolute ho jati hai. Example: Overlapping content.",
+  "inset-0": "inset-0 se element container ke sabhi sides se chipak jata hai.",
   "italic": "italic se text italic ho jata hai.",
   "underline": "underline se text underline ho jata hai.",
-  "uppercase": "uppercase se text capital letters mein convert ho jata hai.",
-  // Add more descriptions as needed for other classes...
+  "uppercase": "uppercase se text uppercase ho jata hai."
 };
-
 /* ---------------------------
    Speech Synthesis Function
+   (Cancels previous speech if needed)
 ---------------------------- */
 function speakDescription(suggestion) {
   if ('speechSynthesis' in window) {
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
     const description = classDescriptions[suggestion];
     if (description) {
       const utterance = new SpeechSynthesisUtterance(description);
-      // Setting language to Hindi so that Hinglish sounds natural
       utterance.lang = 'hi-IN';
       window.speechSynthesis.speak(utterance);
     }
@@ -84,9 +107,6 @@ function speakDescription(suggestion) {
 
 /**
  * Helper function that toggles a CSS class in the given string.
- * @param {string} prev - The previous class string.
- * @param {string} suggestion - The class to toggle.
- * @returns {string} - The new class string.
  */
 function toggleClass(prev, suggestion) {
   const tokens = prev.trim().split(/\s+/).filter(Boolean);
@@ -99,13 +119,10 @@ function toggleClass(prev, suggestion) {
 
 /* ---------------------------
    Updated ClassButtons Component
-   (Now accepts currentClasses and aiTeacher props)
 ---------------------------- */
 function ClassButtons({ suggestions, onButtonClick, currentClasses, aiTeacher }) {
   const handleClick = (s) => {
-    // Determine if the suggestion is being added:
     const tokens = currentClasses.trim().split(/\s+/);
-    // Only speak if AI teacher is enabled and the class is not already present (i.e. it’s being added)
     if (aiTeacher && !tokens.includes(s)) {
       speakDescription(s);
     }
@@ -159,7 +176,6 @@ function AutocompleteTextarea({ value, onChange, placeholder }) {
     const syntheticEvent = { target: { value: newValue } };
     onChange(syntheticEvent);
     setShowSuggestions(false);
-    // Speak on suggestion click only if the class is being added:
     const currentTokens = value.trim().split(/\s+/);
     if (!currentTokens.includes(suggestion)) {
       speakDescription(suggestion);
@@ -193,20 +209,272 @@ function AutocompleteTextarea({ value, onChange, placeholder }) {
 
 /* =======================
    Shared Card Classes
-   ======================= */
+======================= */
 const cardClasses = "border rounded p-4 shadow-sm bg-[#102B4C] text-white";
 
 /* =======================
-   30 Tailwind Concepts Sections
-   (Each now receives an aiTeacher prop and passes the currentClasses to ClassButtons)
-   ======================= */
+   Sections (Ordered Basic to Advanced)
+======================= */
 
-// 1. Flex Layout
+// 1. Text Size
+function SectionTextSize({ aiTeacher }) {
+  const [classes, setClasses] = useState("");
+  const suggestions = ["text-xl", "text-2xl", "text-3xl" , "text-4xl", "font-bold"];
+  const handleChange = (e) => setClasses(e.target.value);
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
+  return (
+    <div className={cardClasses}>
+      <h2 className="text-2xl font-bold mb-2">Text Size</h2>
+      <div className="flex flex-col md:flex-row">
+        <div className="md:w-1/2 p-2">
+          <AutocompleteTextarea
+            value={classes}
+            onChange={handleChange}
+            placeholder='e.g., "text-3xl font-bold"'
+          />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
+          <p className="text-sm text-gray-300 mt-2">
+            <strong>Toggle text size classes.</strong>
+          </p>
+        </div>
+        <div className="md:w-1/2 p-2">
+          <div
+            className={`p-4 border rounded transition-all duration-500 ${classes}`}
+            style={{ minHeight: "100px" }}
+          >
+            <p>This is sample text. Adjust its size!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 2. Background Color
+function SectionBackground({ aiTeacher }) {
+  const [classes, setClasses] = useState("");
+  const suggestions = ["bg-blue-500", "bg-green-500", "bg-purple-500"];
+  const handleChange = (e) => setClasses(e.target.value);
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
+  return (
+    <div className={cardClasses}>
+      <h2 className="text-2xl font-bold mb-2">Background Color</h2>
+      <div className="flex flex-col md:flex-row">
+        <div className="md:w-1/2 p-2">
+          <AutocompleteTextarea
+            value={classes}
+            onChange={handleChange}
+            placeholder='e.g., "bg-purple-500"'
+          />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
+          <p className="text-sm text-gray-300 mt-2">
+            <strong>Toggle background colors.</strong>
+          </p>
+        </div>
+        <div className="md:w-1/2 p-2">
+          <div
+            className={`p-8 border rounded transition-all duration-500 ${classes}`}
+            style={{ minHeight: "100px" }}
+          >
+            <p className="text-white text-center font-bold">
+              Background Preview
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 3. Text Color
+function SectionTextColor({ aiTeacher }) {
+  const [classes, setClasses] = useState("text-red-500");
+  const suggestions = ["text-red-500", "text-blue-500", "text-green-500"];
+  const handleChange = (e) => setClasses(e.target.value);
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
+  return (
+    <div className={cardClasses}>
+      <h2 className="text-2xl font-bold mb-2">Text Color</h2>
+      <div className="flex flex-col md:flex-row items-center">
+        <div className="md:w-1/2 p-2">
+          <AutocompleteTextarea
+            value={classes}
+            onChange={handleChange}
+            placeholder='e.g., "text-red-500"'
+          />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
+          <p className="text-sm text-gray-300 mt-2">
+            <strong>Toggle text color.</strong>
+          </p>
+        </div>
+        <div className="md:w-1/2 p-2">
+          <p className={`p-4 border rounded ${classes}`}>
+            This text color is dynamic!
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 4. Border & Rounded
+function SectionBorderRounded({ aiTeacher }) {
+  const [classes, setClasses] = useState("");
+  const suggestions = [
+    "border",
+    "rounded",
+    "shadow-sm",
+    "border-2",
+    "border-dashed",
+  ];
+  const handleChange = (e) => setClasses(e.target.value);
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
+  return (
+    <div className={cardClasses}>
+      <h2 className="text-2xl font-bold mb-2">Border & Rounded</h2>
+      <div className="flex flex-col md:flex-row">
+        <div className="md:w-1/2 p-2">
+          <AutocompleteTextarea
+            value={classes}
+            onChange={handleChange}
+            placeholder='e.g., "border-2 border-red-500 border-dashed shadow-sm"'
+          />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
+          <p className="text-sm text-gray-300 mt-2">
+            <strong>Toggle border and rounding.</strong>
+          </p>
+        </div>
+        <div className="md:w-1/2 p-2">
+          <div
+            className={`p-8 transition-all duration-500 ${classes}`}
+            style={{ minHeight: "150px" }}
+          >
+            <p className="text-center">Border & Rounded Preview</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 5. Spacing (Padding & Margin)
+function SectionSpacing({ aiTeacher }) {
+  const [classes, setClasses] = useState("");
+  const suggestions = ["p-4", "p-8", "m-4", "m-8", "gap-4"];
+  const handleChange = (e) => setClasses(e.target.value);
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
+  return (
+    <div className={cardClasses}>
+      <h2 className="text-2xl font-bold mb-2">Spacing (Padding & Margin)</h2>
+      <div className="flex flex-col md:flex-row">
+        <div className="md:w-1/2 p-2">
+          <AutocompleteTextarea
+            value={classes}
+            onChange={handleChange}
+            placeholder='e.g., "p-4 m-4"'
+          />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
+          <p className="text-sm text-gray-300 mt-2">
+            <strong>Toggle spacing classes.</strong>
+          </p>
+        </div>
+        <div className="md:w-1/2 p-2">
+          <div
+            className={`border rounded transition-all duration-500 ${classes}`}
+            style={{ minHeight: "150px" }}
+          >
+            <div className="bg-gray-300 p-2 mb-2">Element 1</div>
+            <div className="bg-gray-400 p-2">Element 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 6. Sizing (Width & Height)
+function SectionSizing({ aiTeacher }) {
+  const [classes, setClasses] = useState("w-32 h-32");
+  const suggestions = ["w-32", "h-32", "w-64", "h-64"];
+  const handleChange = (e) => setClasses(e.target.value);
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
+  return (
+    <div className={cardClasses}>
+      <h2 className="text-2xl font-bold mb-2">Sizing (Width & Height)</h2>
+      <div className="flex flex-col md:flex-row items-center">
+        <div className="md:w-1/2 p-2">
+          <AutocompleteTextarea
+            value={classes}
+            onChange={handleChange}
+            placeholder='e.g., "w-32 h-32"'
+          />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
+          <p className="text-sm text-gray-300 mt-2">
+            <strong>Toggle sizing classes.</strong>
+          </p>
+        </div>
+        <div className="md:w-1/2 p-2 flex justify-center">
+          <div
+            className={`border rounded bg-gray-300 ${classes} flex items-center justify-center`}
+          >
+            Box
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 7. Flex Layout
 function SectionFlex({ aiTeacher }) {
   const [classes, setClasses] = useState("");
-  const suggestions = ["flex", "gap-4", "justify-center", "justify-end", "justify-between", "justify-evenly"];
+  const suggestions = [
+    "flex",
+    "gap-4",
+    "justify-center",
+    "justify-end",
+    "justify-between",
+    "justify-evenly",
+  ];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">Flex Layout</h2>
@@ -243,51 +511,13 @@ function SectionFlex({ aiTeacher }) {
   );
 }
 
-// 2. Text Size
-function SectionTextSize({ aiTeacher }) {
-  const [classes, setClasses] = useState("");
-  const suggestions = ["text-xl", "text-2xl", "text-3xl", "font-bold"];
-  const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
-  return (
-    <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Text Size</h2>
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/2 p-2">
-          <AutocompleteTextarea
-            value={classes}
-            onChange={handleChange}
-            placeholder='e.g., "text-3xl font-bold"'
-          />
-          <ClassButtons
-            suggestions={suggestions}
-            onButtonClick={handleButtonClick}
-            currentClasses={classes}
-            aiTeacher={aiTeacher}
-          />
-          <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle text size classes.</strong>
-          </p>
-        </div>
-        <div className="md:w-1/2 p-2">
-          <div
-            className={`p-4 border rounded transition-all duration-500 ${classes}`}
-            style={{ minHeight: "100px" }}
-          >
-            <p>This is sample text. Adjust its size!</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 3. Justify Content
+// 8. Justify Content
 function SectionJustifyContent({ aiTeacher }) {
   const [classes, setClasses] = useState("");
   const suggestions = ["justify-center", "justify-end", "justify-between"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">Justify Content</h2>
@@ -323,319 +553,13 @@ function SectionJustifyContent({ aiTeacher }) {
   );
 }
 
-// 4. Background Color
-function SectionBackground({ aiTeacher }) {
-  const [classes, setClasses] = useState("");
-  const suggestions = ["bg-blue-500", "bg-green-500", "bg-purple-500"];
-  const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
-  return (
-    <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Background Color</h2>
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/2 p-2">
-          <AutocompleteTextarea
-            value={classes}
-            onChange={handleChange}
-            placeholder='e.g., "bg-purple-500"'
-          />
-          <ClassButtons
-            suggestions={suggestions}
-            onButtonClick={handleButtonClick}
-            currentClasses={classes}
-            aiTeacher={aiTeacher}
-          />
-          <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle background colors.</strong>
-          </p>
-        </div>
-        <div className="md:w-1/2 p-2">
-          <div
-            className={`p-8 border rounded transition-all duration-500 ${classes}`}
-            style={{ minHeight: "100px" }}
-          >
-            <p className="text-white text-center font-bold">Background Preview</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 5. Spacing (Padding & Margin)
-function SectionSpacing({ aiTeacher }) {
-  const [classes, setClasses] = useState("");
-  const suggestions = ["p-4", "p-8", "m-4", "m-8", "gap-4"];
-  const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
-  return (
-    <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Spacing (Padding & Margin)</h2>
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/2 p-2">
-          <AutocompleteTextarea
-            value={classes}
-            onChange={handleChange}
-            placeholder='e.g., "p-4 m-4"'
-          />
-          <ClassButtons
-            suggestions={suggestions}
-            onButtonClick={handleButtonClick}
-            currentClasses={classes}
-            aiTeacher={aiTeacher}
-          />
-          <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle spacing classes.</strong>
-          </p>
-        </div>
-        <div className="md:w-1/2 p-2">
-          <div
-            className={`border rounded transition-all duration-500 ${classes}`}
-            style={{ minHeight: "150px" }}
-          >
-            <div className="bg-gray-300 p-2 mb-2">Element 1</div>
-            <div className="bg-gray-400 p-2">Element 2</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 6. Border & Rounded
-function SectionBorderRounded({ aiTeacher }) {
-  const [classes, setClasses] = useState("");
-  const suggestions = ["border", "rounded", "shadow-sm", "border-2", "border-dashed"];
-  const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
-  return (
-    <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Border & Rounded</h2>
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/2 p-2">
-          <AutocompleteTextarea
-            value={classes}
-            onChange={handleChange}
-            placeholder='e.g., "border-2 border-red-500 border-dashed shadow-sm"'
-          />
-          <ClassButtons
-            suggestions={suggestions}
-            onButtonClick={handleButtonClick}
-            currentClasses={classes}
-            aiTeacher={aiTeacher}
-          />
-          <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle border and rounding.</strong>
-          </p>
-        </div>
-        <div className="md:w-1/2 p-2">
-          <div
-            className={`p-8 transition-all duration-500 ${classes}`}
-            style={{ minHeight: "150px" }}
-          >
-            <p className="text-center">Border & Rounded Preview</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 7. Responsive Design
-function SectionResponsiveDesign({ aiTeacher }) {
-  const [classes, setClasses] = useState("sm:text-sm md:text-lg lg:text-xl");
-  const suggestions = ["sm:text-sm", "md:text-lg", "lg:text-xl"];
-  const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
-  return (
-    <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Responsive Design</h2>
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/2 p-2">
-          <AutocompleteTextarea
-            value={classes}
-            onChange={handleChange}
-            placeholder='e.g., "sm:text-sm md:text-lg lg:text-xl"'
-          />
-          <ClassButtons
-            suggestions={suggestions}
-            onButtonClick={handleButtonClick}
-            currentClasses={classes}
-            aiTeacher={aiTeacher}
-          />
-          <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle responsive classes.</strong>
-          </p>
-        </div>
-        <div className="md:w-1/2 p-2">
-          <div
-            className={`p-4 border rounded transition-all duration-500 ${classes}`}
-            style={{ minHeight: "100px" }}
-          >
-            <p>Resize the window to see changes!</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 8. Grid Layout
-function SectionGridLayout({ aiTeacher }) {
-  const [classes, setClasses] = useState("grid grid-cols-2 gap-4");
-  const suggestions = ["grid", "grid-cols-2", "grid-cols-3", "gap-4"];
-  const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
-  return (
-    <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Grid Layout</h2>
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/2 p-2">
-          <AutocompleteTextarea
-            value={classes}
-            onChange={handleChange}
-            placeholder='e.g., "grid grid-cols-2 gap-4"'
-          />
-          <ClassButtons
-            suggestions={suggestions}
-            onButtonClick={handleButtonClick}
-            currentClasses={classes}
-            aiTeacher={aiTeacher}
-          />
-          <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle grid classes.</strong>
-          </p>
-        </div>
-        <div className="md:w-1/2 p-2">
-          <div
-            className={`p-4 border rounded transition-all duration-500 ${classes}`}
-            style={{ minHeight: "150px" }}
-          >
-            <div className="bg-blue-300 p-4 text-center">Item 1</div>
-            <div className="bg-green-300 p-4 text-center">Item 2</div>
-            <div className="bg-red-300 p-4 text-center">Item 3</div>
-            <div className="bg-yellow-300 p-4 text-center">Item 4</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 9. Hover Effects
-function SectionHoverEffects({ aiTeacher }) {
-  const [classes, setClasses] = useState("hover:bg-blue-500 hover:text-white");
-  const suggestions = ["hover:bg-blue-500", "hover:text-white"];
-  const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
-  return (
-    <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Hover Effects</h2>
-      <div className="flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 p-2">
-          <AutocompleteTextarea
-            value={classes}
-            onChange={handleChange}
-            placeholder='e.g., "hover:bg-blue-500 hover:text-white"'
-          />
-          <ClassButtons
-            suggestions={suggestions}
-            onButtonClick={handleButtonClick}
-            currentClasses={classes}
-            aiTeacher={aiTeacher}
-          />
-          <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle hover classes.</strong>
-          </p>
-        </div>
-        <div className="md:w-1/2 p-2">
-          <button className={`p-4 border rounded transition-all duration-300 ${classes}`}>
-            Hover over me!
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 10. Transition & Animation
-function SectionTransitionAnimation({ aiTeacher }) {
-  const [classes, setClasses] = useState("transform hover:scale-105 transition-transform duration-300");
-  const suggestions = ["transform", "hover:scale-105", "transition-transform", "duration-300"];
-  const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
-  return (
-    <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Transition & Animation</h2>
-      <div className="flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 p-2">
-          <AutocompleteTextarea
-            value={classes}
-            onChange={handleChange}
-            placeholder='e.g., "transform hover:scale-105 transition-transform duration-300"'
-          />
-          <ClassButtons
-            suggestions={suggestions}
-            onButtonClick={handleButtonClick}
-            currentClasses={classes}
-            aiTeacher={aiTeacher}
-          />
-          <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle transition classes.</strong>
-          </p>
-        </div>
-        <div className="md:w-1/2 p-2 flex justify-center">
-          <div className={`p-8 border rounded ${classes}`}>
-            <p>Hover to animate!</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 11. Opacity
-function SectionOpacity({ aiTeacher }) {
-  const [classes, setClasses] = useState("opacity-50 hover:opacity-100 transition-opacity duration-300");
-  const suggestions = ["opacity-50", "hover:opacity-100", "transition-opacity", "duration-300"];
-  const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
-  return (
-    <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Opacity</h2>
-      <div className="flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 p-2">
-          <AutocompleteTextarea
-            value={classes}
-            onChange={handleChange}
-            placeholder='e.g., "opacity-50 hover:opacity-100 transition-opacity duration-300"'
-          />
-          <ClassButtons
-            suggestions={suggestions}
-            onButtonClick={handleButtonClick}
-            currentClasses={classes}
-            aiTeacher={aiTeacher}
-          />
-          <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle opacity classes.</strong>
-          </p>
-        </div>
-        <div className="md:w-1/2 p-2">
-          <div className={`p-8 border rounded ${classes}`}>
-            <p className="text-center">Hover to change opacity</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 12. Flex Wrap
+// 9. Flex Wrap
 function SectionFlexWrap({ aiTeacher }) {
   const [classes, setClasses] = useState("flex flex-wrap gap-4");
   const suggestions = ["flex", "flex-wrap", "gap-4"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">Flex Wrap</h2>
@@ -673,21 +597,22 @@ function SectionFlexWrap({ aiTeacher }) {
   );
 }
 
-// 13. Text Color
-function SectionTextColor({ aiTeacher }) {
-  const [classes, setClasses] = useState("text-red-500");
-  const suggestions = ["text-red-500", "text-blue-500", "text-green-500"];
+// 10. Grid Layout
+function SectionGridLayout({ aiTeacher }) {
+  const [classes, setClasses] = useState("grid grid-cols-2 gap-4");
+  const suggestions = ["grid", "grid-cols-2", "grid-cols-3", "gap-4"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Text Color</h2>
-      <div className="flex flex-col md:flex-row items-center">
+      <h2 className="text-2xl font-bold mb-2">Grid Layout</h2>
+      <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2 p-2">
           <AutocompleteTextarea
             value={classes}
             onChange={handleChange}
-            placeholder='e.g., "text-red-500"'
+            placeholder='e.g., "grid grid-cols-2 gap-4"'
           />
           <ClassButtons
             suggestions={suggestions}
@@ -696,34 +621,41 @@ function SectionTextColor({ aiTeacher }) {
             aiTeacher={aiTeacher}
           />
           <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle text color.</strong>
+            <strong>Toggle grid classes.</strong>
           </p>
         </div>
         <div className="md:w-1/2 p-2">
-          <p className={`p-4 border rounded ${classes}`}>
-            This text color is dynamic!
-          </p>
+          <div
+            className={`p-4 border rounded transition-all duration-500 ${classes}`}
+            style={{ minHeight: "150px" }}
+          >
+            <div className="bg-blue-300 p-4 text-center">Item 1</div>
+            <div className="bg-green-300 p-4 text-center">Item 2</div>
+            <div className="bg-red-300 p-4 text-center">Item 3</div>
+            <div className="bg-yellow-300 p-4 text-center">Item 4</div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-// 14. Sizing (Width & Height)
-function SectionSizing({ aiTeacher }) {
-  const [classes, setClasses] = useState("w-32 h-32");
-  const suggestions = ["w-32", "h-32", "w-64", "h-64"];
+// 11. Responsive Design
+function SectionResponsiveDesign({ aiTeacher }) {
+  const [classes, setClasses] = useState("sm:text-sm md:text-lg lg:text-xl");
+  const suggestions = ["sm:text-sm", "md:text-lg", "lg:text-xl"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Sizing (Width & Height)</h2>
-      <div className="flex flex-col md:flex-row items-center">
+      <h2 className="text-2xl font-bold mb-2">Responsive Design</h2>
+      <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2 p-2">
           <AutocompleteTextarea
             value={classes}
             onChange={handleChange}
-            placeholder='e.g., "w-32 h-32"'
+            placeholder='e.g., "sm:text-sm md:text-lg lg:text-xl"'
           />
           <ClassButtons
             suggestions={suggestions}
@@ -732,12 +664,126 @@ function SectionSizing({ aiTeacher }) {
             aiTeacher={aiTeacher}
           />
           <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle sizing classes.</strong>
+            <strong>Toggle responsive classes.</strong>
+          </p>
+        </div>
+        <div className="md:w-1/2 p-2">
+          <div
+            className={`p-4 border rounded transition-all duration-500 ${classes}`}
+            style={{ minHeight: "100px" }}
+          >
+            <p>Resize the window to see changes!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 12. Hover Effects
+function SectionHoverEffects({ aiTeacher }) {
+  const [classes, setClasses] = useState("hover:bg-blue-500 hover:text-white");
+  const suggestions = ["hover:bg-blue-500", "hover:text-white"];
+  const handleChange = (e) => setClasses(e.target.value);
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
+  return (
+    <div className={cardClasses}>
+      <h2 className="text-2xl font-bold mb-2">Hover Effects</h2>
+      <div className="flex flex-col md:flex-row items-center">
+        <div className="md:w-1/2 p-2">
+          <AutocompleteTextarea
+            value={classes}
+            onChange={handleChange}
+            placeholder='e.g., "hover:bg-blue-500 hover:text-white"'
+          />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
+          <p className="text-sm text-gray-300 mt-2">
+            <strong>Toggle hover classes.</strong>
+          </p>
+        </div>
+        <div className="md:w-1/2 p-2">
+          <button className={`p-4 border rounded transition-all duration-300 ${classes}`}>
+            Hover over me!
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 13. Transition & Animation
+function SectionTransitionAnimation({ aiTeacher }) {
+  const [classes, setClasses] = useState("transform hover:scale-105 transition-transform duration-300");
+  const suggestions = ["transform", "hover:scale-105", "transition-transform", "duration-300"];
+  const handleChange = (e) => setClasses(e.target.value);
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
+  return (
+    <div className={cardClasses}>
+      <h2 className="text-2xl font-bold mb-2">Transition & Animation</h2>
+      <div className="flex flex-col md:flex-row items-center">
+        <div className="md:w-1/2 p-2">
+          <AutocompleteTextarea
+            value={classes}
+            onChange={handleChange}
+            placeholder='e.g., "transform hover:scale-105 transition-transform duration-300"'
+          />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
+          <p className="text-sm text-gray-300 mt-2">
+            <strong>Toggle transition classes.</strong>
           </p>
         </div>
         <div className="md:w-1/2 p-2 flex justify-center">
-          <div className={`border rounded bg-gray-300 ${classes} flex items-center justify-center`}>
-            Box
+          <div className={`p-8 border rounded ${classes}`}>
+            <p>Hover to animate!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 14. Opacity
+function SectionOpacity({ aiTeacher }) {
+  const [classes, setClasses] = useState("opacity-50 hover:opacity-100 transition-opacity duration-300");
+  const suggestions = ["opacity-50", "hover:opacity-100", "transition-opacity", "duration-300"];
+  const handleChange = (e) => setClasses(e.target.value);
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
+  return (
+    <div className={cardClasses}>
+      <h2 className="text-2xl font-bold mb-2">Opacity</h2>
+      <div className="flex flex-col md:flex-row items-center">
+        <div className="md:w-1/2 p-2">
+          <AutocompleteTextarea
+            value={classes}
+            onChange={handleChange}
+            placeholder='e.g., "opacity-50 hover:opacity-100 transition-opacity duration-300"'
+          />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
+          <p className="text-sm text-gray-300 mt-2">
+            <strong>Toggle opacity classes.</strong>
+          </p>
+        </div>
+        <div className="md:w-1/2 p-2">
+          <div className={`p-8 border rounded ${classes}`}>
+            <p className="text-center">Hover to change opacity</p>
           </div>
         </div>
       </div>
@@ -811,7 +857,8 @@ function SectionFontStyles({ aiTeacher }) {
   const [classes, setClasses] = useState("italic underline uppercase");
   const suggestions = ["italic", "underline", "uppercase", "normal-case"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">Font Styles</h2>
@@ -842,12 +889,13 @@ function SectionFontStyles({ aiTeacher }) {
   );
 }
 
-// 17. Shadow (Box Shadows)
+// 17. Shadow
 function SectionShadow({ aiTeacher }) {
   const [classes, setClasses] = useState("shadow-sm");
   const suggestions = ["shadow-sm", "shadow-md", "shadow-lg", "shadow-none"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">Shadow</h2>
@@ -881,12 +929,13 @@ function SectionShadow({ aiTeacher }) {
   );
 }
 
-// 18. Animation (Predefined animations)
+// 18. Animation
 function SectionAnimation({ aiTeacher }) {
   const [classes, setClasses] = useState("animate-spin");
   const suggestions = ["animate-spin", "animate-ping", "animate-bounce", "animate-pulse"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">Animation</h2>
@@ -915,12 +964,118 @@ function SectionAnimation({ aiTeacher }) {
   );
 }
 
-// 19. Ring (Focus rings)
+// 19. Rotate
+function SectionRotate({ aiTeacher }) {
+  const [classes, setClasses] = useState("rotate-45");
+  const suggestions = ["rotate-45", "rotate-90", "rotate-180", "rotate-0"];
+  const handleChange = (e) => setClasses(e.target.value);
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
+  return (
+    <div className={cardClasses}>
+      <h2 className="text-2xl font-bold mb-2">Rotate (Transform)</h2>
+      <div className="flex flex-col md:flex-row items-center">
+        <div className="md:w-1/2 p-2">
+          <AutocompleteTextarea
+            value={classes}
+            onChange={handleChange}
+            placeholder='e.g., "rotate-45"'
+          />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
+          <p className="text-sm text-gray-300 mt-2">
+            <strong>Toggle rotation classes.</strong>
+          </p>
+        </div>
+        <div className="md:w-1/2 p-2 flex justify-center">
+          <div className={`w-16 h-16 bg-green-500 rounded transition-transform duration-500 ${classes}`}></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 20. Scale
+function SectionScale({ aiTeacher }) {
+  const [classes, setClasses] = useState("scale-90");
+  const suggestions = ["scale-90", "scale-100", "scale-110"];
+  const handleChange = (e) => setClasses(e.target.value);
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
+  return (
+    <div className={cardClasses}>
+      <h2 className="text-2xl font-bold mb-2">Scale (Transform)</h2>
+      <div className="flex flex-col md:flex-row items-center">
+        <div className="md:w-1/2 p-2">
+          <AutocompleteTextarea
+            value={classes}
+            onChange={handleChange}
+            placeholder='e.g., "scale-90"'
+          />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
+          <p className="text-sm text-gray-300 mt-2">
+            <strong>Toggle scale classes.</strong>
+          </p>
+        </div>
+        <div className="md:w-1/2 p-2 flex justify-center">
+          <div className={`w-16 h-16 bg-purple-500 rounded transition-transform duration-500 ${classes}`}></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 21. Skew
+function SectionSkew({ aiTeacher }) {
+  const [classes, setClasses] = useState("skew-x-6");
+  const suggestions = ["skew-x-6", "skew-x-12", "skew-y-6", "skew-y-12", "skew-x-0", "skew-y-0"];
+  const handleChange = (e) => setClasses(e.target.value);
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
+  return (
+    <div className={cardClasses}>
+      <h2 className="text-2xl font-bold mb-2">Skew (Transform)</h2>
+      <div className="flex flex-col md:flex-row items-center">
+        <div className="md:w-1/2 p-2">
+          <AutocompleteTextarea
+            value={classes}
+            onChange={handleChange}
+            placeholder='e.g., "skew-x-6"'
+          />
+          <ClassButtons
+            suggestions={suggestions}
+            onButtonClick={handleButtonClick}
+            currentClasses={classes}
+            aiTeacher={aiTeacher}
+          />
+          <p className="text-sm text-gray-300 mt-2">
+            <strong>Toggle skew classes.</strong>
+          </p>
+        </div>
+        <div className="md:w-1/2 p-2 flex justify-center">
+          <div className={`w-16 h-16 bg-red-500 rounded transition-transform duration-500 ${classes}`}></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 22. Ring
 function SectionRing({ aiTeacher }) {
   const [classes, setClasses] = useState("ring-2 ring-offset-2 ring-indigo-500");
   const suggestions = ["ring-2", "ring-4", "ring-offset-2", "ring-offset-4", "ring-indigo-500", "ring-red-500"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">Ring (Focus Outline)</h2>
@@ -953,12 +1108,13 @@ function SectionRing({ aiTeacher }) {
   );
 }
 
-// 20. Outline
+// 23. Outline
 function SectionOutline({ aiTeacher }) {
   const [classes, setClasses] = useState("outline-none focus:outline");
   const suggestions = ["outline-none", "focus:outline", "focus:outline-none"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">Outline</h2>
@@ -991,114 +1147,13 @@ function SectionOutline({ aiTeacher }) {
   );
 }
 
-// 21. Rotate (Transform rotate)
-function SectionRotate({ aiTeacher }) {
-  const [classes, setClasses] = useState("rotate-45");
-  const suggestions = ["rotate-45", "rotate-90", "rotate-180", "rotate-0"];
-  const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
-  return (
-    <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Rotate (Transform)</h2>
-      <div className="flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 p-2">
-          <AutocompleteTextarea
-            value={classes}
-            onChange={handleChange}
-            placeholder='e.g., "rotate-45"'
-          />
-          <ClassButtons
-            suggestions={suggestions}
-            onButtonClick={handleButtonClick}
-            currentClasses={classes}
-            aiTeacher={aiTeacher}
-          />
-          <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle rotation classes.</strong>
-          </p>
-        </div>
-        <div className="md:w-1/2 p-2 flex justify-center">
-          <div className={`w-16 h-16 bg-green-500 rounded transition-transform duration-500 ${classes}`}></div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 22. Scale (Transform scale)
-function SectionScale({ aiTeacher }) {
-  const [classes, setClasses] = useState("scale-90");
-  const suggestions = ["scale-90", "scale-100", "scale-110"];
-  const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
-  return (
-    <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Scale (Transform)</h2>
-      <div className="flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 p-2">
-          <AutocompleteTextarea
-            value={classes}
-            onChange={handleChange}
-            placeholder='e.g., "scale-90"'
-          />
-          <ClassButtons
-            suggestions={suggestions}
-            onButtonClick={handleButtonClick}
-            currentClasses={classes}
-            aiTeacher={aiTeacher}
-          />
-          <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle scale classes.</strong>
-          </p>
-        </div>
-        <div className="md:w-1/2 p-2 flex justify-center">
-          <div className={`w-16 h-16 bg-purple-500 rounded transition-transform duration-500 ${classes}`}></div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 23. Skew (Transform skew)
-function SectionSkew({ aiTeacher }) {
-  const [classes, setClasses] = useState("skew-x-6");
-  const suggestions = ["skew-x-6", "skew-x-12", "skew-y-6", "skew-y-12", "skew-x-0", "skew-y-0"];
-  const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
-  return (
-    <div className={cardClasses}>
-      <h2 className="text-2xl font-bold mb-2">Skew (Transform)</h2>
-      <div className="flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 p-2">
-          <AutocompleteTextarea
-            value={classes}
-            onChange={handleChange}
-            placeholder='e.g., "skew-x-6"'
-          />
-          <ClassButtons
-            suggestions={suggestions}
-            onButtonClick={handleButtonClick}
-            currentClasses={classes}
-            aiTeacher={aiTeacher}
-          />
-          <p className="text-sm text-gray-300 mt-2">
-            <strong>Toggle skew classes.</strong>
-          </p>
-        </div>
-        <div className="md:w-1/2 p-2 flex justify-center">
-          <div className={`w-16 h-16 bg-red-500 rounded transition-transform duration-500 ${classes}`}></div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // 24. Object Fit
 function SectionObjectFit({ aiTeacher }) {
   const [classes, setClasses] = useState("object-cover");
   const suggestions = ["object-cover", "object-contain", "object-fill", "object-none"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">Object Fit</h2>
@@ -1136,7 +1191,8 @@ function SectionObjectPosition({ aiTeacher }) {
   const [classes, setClasses] = useState("object-center");
   const suggestions = ["object-center", "object-top", "object-bottom", "object-left", "object-right"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">Object Position</h2>
@@ -1176,7 +1232,8 @@ function SectionOverflow({ aiTeacher }) {
   const [classes, setClasses] = useState("overflow-auto");
   const suggestions = ["overflow-auto", "overflow-hidden", "overflow-scroll"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">Overflow</h2>
@@ -1218,7 +1275,8 @@ function SectionZIndex({ aiTeacher }) {
   const [classes, setClasses] = useState("z-10");
   const suggestions = ["z-0", "z-10", "z-20", "z-30", "z-40", "z-50"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={`${cardClasses} relative`}>
       <h2 className="text-2xl font-bold mb-2">Z-Index</h2>
@@ -1260,7 +1318,8 @@ function SectionCursor({ aiTeacher }) {
   const [classes, setClasses] = useState("cursor-pointer");
   const suggestions = ["cursor-pointer", "cursor-default", "cursor-not-allowed"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">Cursor</h2>
@@ -1294,7 +1353,8 @@ function SectionPointerEvents({ aiTeacher }) {
   const [classes, setClasses] = useState("pointer-events-auto");
   const suggestions = ["pointer-events-auto", "pointer-events-none"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">Pointer Events</h2>
@@ -1330,7 +1390,8 @@ function SectionUserSelect({ aiTeacher }) {
   const [classes, setClasses] = useState("select-none");
   const suggestions = ["select-none", "select-text", "select-all", "select-auto"];
   const handleChange = (e) => setClasses(e.target.value);
-  const handleButtonClick = (sugg) => setClasses((prev) => toggleClass(prev, sugg));
+  const handleButtonClick = (sugg) =>
+    setClasses((prev) => toggleClass(prev, sugg));
   return (
     <div className={cardClasses}>
       <h2 className="text-2xl font-bold mb-2">User Select</h2>
@@ -1363,7 +1424,7 @@ function SectionUserSelect({ aiTeacher }) {
 
 /* =======================
    Main App Component
-   ======================= */
+======================= */
 function App() {
   // State for the AI Teacher toggle; by default it is off (false)
   const [aiTeacher, setAiTeacher] = useState(false);
@@ -1373,10 +1434,10 @@ function App() {
       {/* Professional AI Teacher Toggle Button */}
       <div className="flex flex-col items-center justify-center mb-8">
         <button
-          onClick={() => setAiTeacher(prev => !prev)}
+          onClick={() => setAiTeacher((prev) => !prev)}
           className="flex items-center justify-center bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:from-purple-600 hover:to-blue-600 transition-all text-lg"
         >
-          {/* Example Premium AI Icon */}
+          {/* Premium AI Icon (Inline SVG) */}
           <svg
             className="w-6 h-6 mr-2"
             fill="currentColor"
@@ -1388,36 +1449,37 @@ function App() {
           <span>{aiTeacher ? "Disable AI Teacher" : "Enable AI Teacher"}</span>
         </button>
         <p className="mt-4 text-white text-center text-xl font-semibold">
-          Each section demonstrates a common Tailwind CSS concept.
+          Har section ek common Tailwind CSS concept ko demonstrate karta hai.
           <br />
-          Type your classes or use the buttons to toggle them and see the live preview update!
+          Aap apne classes type karein ya buttons ka use karein aur live preview dekhein!
         </p>
       </div>
 
-      {/* 30 Sections */}
-      <SectionFlex aiTeacher={aiTeacher} />
+      {/* Sections in basic-to-advanced order */}
       <SectionTextSize aiTeacher={aiTeacher} />
-      <SectionJustifyContent aiTeacher={aiTeacher} />
+      
       <SectionBackground aiTeacher={aiTeacher} />
-      <SectionSpacing aiTeacher={aiTeacher} />
+      <SectionTextColor aiTeacher={aiTeacher} />
       <SectionBorderRounded aiTeacher={aiTeacher} />
-      <SectionResponsiveDesign aiTeacher={aiTeacher} />
+      <SectionSpacing aiTeacher={aiTeacher} />
+      <SectionSizing aiTeacher={aiTeacher} />
+      <SectionFlex aiTeacher={aiTeacher} />
+      <SectionJustifyContent aiTeacher={aiTeacher} />
+      <SectionFlexWrap aiTeacher={aiTeacher} />
       <SectionGridLayout aiTeacher={aiTeacher} />
+      <SectionResponsiveDesign aiTeacher={aiTeacher} />
       <SectionHoverEffects aiTeacher={aiTeacher} />
       <SectionTransitionAnimation aiTeacher={aiTeacher} />
       <SectionOpacity aiTeacher={aiTeacher} />
-      <SectionFlexWrap aiTeacher={aiTeacher} />
-      <SectionTextColor aiTeacher={aiTeacher} />
-      <SectionSizing aiTeacher={aiTeacher} />
       <SectionPositioning aiTeacher={aiTeacher} />
       <SectionFontStyles aiTeacher={aiTeacher} />
       <SectionShadow aiTeacher={aiTeacher} />
       <SectionAnimation aiTeacher={aiTeacher} />
-      <SectionRing aiTeacher={aiTeacher} />
-      <SectionOutline aiTeacher={aiTeacher} />
       <SectionRotate aiTeacher={aiTeacher} />
       <SectionScale aiTeacher={aiTeacher} />
       <SectionSkew aiTeacher={aiTeacher} />
+      <SectionRing aiTeacher={aiTeacher} />
+      <SectionOutline aiTeacher={aiTeacher} />
       <SectionObjectFit aiTeacher={aiTeacher} />
       <SectionObjectPosition aiTeacher={aiTeacher} />
       <SectionOverflow aiTeacher={aiTeacher} />
@@ -1425,6 +1487,7 @@ function App() {
       <SectionCursor aiTeacher={aiTeacher} />
       <SectionPointerEvents aiTeacher={aiTeacher} />
       <SectionUserSelect aiTeacher={aiTeacher} />
+      
       <div className="text-center mt-8 text-gray-300">
         <p>
           <strong>Tips:</strong> Click the buttons or type your own Tailwind CSS classes to see the live preview update!
