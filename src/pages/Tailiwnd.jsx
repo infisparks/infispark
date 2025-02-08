@@ -1966,6 +1966,16 @@ function App() {
 
   return (
     <div className="min-h-screen p-4 space-y-8" style={{ backgroundColor: "#0C1838" }}>
+      {/* Suggestion Banner at the Top */}
+      <div className="bg-blue-600 text-white text-center p-2 rounded mb-4">
+        <p>
+          Suggestion: Watch this Tailwind CSS video for a simple explanation:&nbsp;
+          <a href="https://www.youtube.com/watch?v=_9mTJ84uL1Q" target="_blank" rel="noopener noreferrer" className="underline">
+            Watch Now
+          </a>
+        </p>
+      </div>
+
       {/* Show the user form if not already submitted */}
       {!formSubmitted && <UserForm onFormSubmit={handleFormSubmit} />}
 
