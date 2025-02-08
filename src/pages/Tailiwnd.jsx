@@ -25,237 +25,237 @@ const tailwindClasses = [
 ---------------------------- */
 const classDescriptions = {
   // Text Size
-  "text-xl": "Sets the text size to extra large.",
-  "text-2xl": "Sets the text size to 2xl, larger than text-xl.",
-  "text-3xl": "Sets the text size to 3xl, even larger text.",
-  "text-xs": "Sets the text size to extra small.",
-  "text-sm": "Sets the text size to small.",
-  "text-lg": "Sets the text size to large.",
-  "text-base": "Sets the text size to the base (default) size.",
+  "text-xl": "Sets the text size to extra large. Why we use it: To make headings or important text more visible.",
+  "text-2xl": "Sets the text size to 2xl, larger than text-xl. Why we use it: To emphasize prominent text elements.",
+  "text-3xl": "Sets the text size to 3xl, even larger text. Why we use it: To create standout headlines or focal points.",
+  "text-xs": "Sets the text size to extra small. Why we use it: Useful for disclaimers or less important text.",
+  "text-sm": "Sets the text size to small. Why we use it: Ideal for subtext or captions.",
+  "text-lg": "Sets the text size to large. Why we use it: Enhances readability for prominent paragraphs.",
+  "text-base": "Sets the text size to the base (default) size. Why we use it: Provides a standard size for regular content.",
 
   // Font Weight
-  "font-thin": "Applies a very thin font weight.",
-  "font-light": "Applies a light font weight.",
-  "font-medium": "Applies a medium font weight.",
-  "font-semibold": "Applies a semi-bold font weight.",
-  "font-bold": "Applies a bold font weight.",
+  "font-thin": "Applies a very thin font weight. Why we use it: To create a light and airy text appearance.",
+  "font-light": "Applies a light font weight. Why we use it: For a softer, more delicate text display.",
+  "font-medium": "Applies a medium font weight. Why we use it: Balances readability and emphasis.",
+  "font-semibold": "Applies a semi-bold font weight. Why we use it: To slightly highlight text without being too heavy.",
+  "font-bold": "Applies a bold font weight. Why we use it: To draw attention to important text or headings.",
 
   // Text Color
-  "text-red-500": "Sets the text color to a mid-level red.",
-  "text-blue-500": "Sets the text color to a mid-level blue.",
-  "text-green-500": "Sets the text color to a mid-level green.",
+  "text-red-500": "Sets the text color to a mid-level red. Why we use it: To indicate errors or draw attention.",
+  "text-blue-500": "Sets the text color to a mid-level blue. Why we use it: For a calm and professional look.",
+  "text-green-500": "Sets the text color to a mid-level green. Why we use it: Often used to indicate success or positivity.",
 
   // Text Alignment
-  "text-left": "Aligns text to the left.",
-  "text-center": "Centers the text horizontally.",
-  "text-right": "Aligns text to the right.",
-  "text-justify": "Justifies the text, aligning both left and right edges.",
+  "text-left": "Aligns text to the left. Why we use it: For standard readability in left-to-right languages.",
+  "text-center": "Centers the text horizontally. Why we use it: To create balanced layouts, especially for headings.",
+  "text-right": "Aligns text to the right. Why we use it: Useful for aligning text in specific design contexts.",
+  "text-justify": "Justifies the text, aligning both left and right edges. Why we use it: For a clean and professional block of text.",
 
   // Text Decoration
-  "italic": "Makes the text italicized.",
-  "underline": "Adds an underline to the text.",
-  "uppercase": "Transforms the text to all uppercase letters.",
-  "normal-case": "Resets text transformation to normal case.",
-  "line-through": "Adds a line through (strikes out) the text.",
-  "no-underline": "Removes any underline from the text.",
+  "italic": "Makes the text italicized. Why we use it: To emphasize or differentiate text.",
+  "underline": "Adds an underline to the text. Why we use it: Commonly used to indicate links or highlight text.",
+  "uppercase": "Transforms the text to all uppercase letters. Why we use it: To create a strong, commanding appearance.",
+  "normal-case": "Resets text transformation to normal case. Why we use it: When default text casing is required.",
+  "line-through": "Adds a line through (strikes out) the text. Why we use it: Often used to show removal or discount.",
+  "no-underline": "Removes any underline from the text. Why we use it: To override default underlining on links.",
 
   // Background Color
-  "bg-blue-500": "Sets the background color to a mid-level blue.",
-  "bg-green-500": "Sets the background color to a mid-level green.",
-  "bg-purple-500": "Sets the background color to a mid-level purple.",
-  "bg-red-500": "Sets the background color to a mid-level red.",
+  "bg-blue-500": "Sets the background color to a mid-level blue. Why we use it: To create a vibrant or calming background.",
+  "bg-green-500": "Sets the background color to a mid-level green. Why we use it: To indicate success or a natural theme.",
+  "bg-purple-500": "Sets the background color to a mid-level purple. Why we use it: For a creative and elegant look.",
+  "bg-red-500": "Sets the background color to a mid-level red. Why we use it: To capture attention or signal alerts.",
 
   // Background Gradient
-  "bg-gradient-to-r": "Applies a background gradient that flows to the right.",
-  "bg-gradient-to-l": "Applies a background gradient that flows to the left.",
-  "bg-gradient-to-t": "Applies a background gradient that flows to the top.",
-  "bg-gradient-to-b": "Applies a background gradient that flows to the bottom.",
+  "bg-gradient-to-r": "Applies a background gradient that flows to the right. Why we use it: To add dynamic color transitions.",
+  "bg-gradient-to-l": "Applies a background gradient that flows to the left. Why we use it: To create visually appealing backgrounds.",
+  "bg-gradient-to-t": "Applies a background gradient that flows to the top. Why we use it: To enhance the depth of design elements.",
+  "bg-gradient-to-b": "Applies a background gradient that flows to the bottom. Why we use it: To add a modern and stylish background effect.",
 
   // Background Image
-  "bg-none": "Removes any background image or pattern.",
-  "bg-cover": "Scales the background image to cover the entire element.",
-  "bg-contain": "Scales the background image to be fully visible within the element.",
+  "bg-none": "Removes any background image or pattern. Why we use it: To ensure a clean, image-free background.",
+  "bg-cover": "Scales the background image to cover the entire element. Why we use it: To maintain a full-coverage background image.",
+  "bg-contain": "Scales the background image to be fully visible within the element. Why we use it: To ensure the whole image is displayed without cropping.",
 
   // Border & Rounded
-  "border": "Applies a default border to the element.",
-  "rounded": "Rounds the corners of the element.",
-  "border-2": "Sets the border width to 2 pixels.",
-  "border-dashed": "Makes the border style dashed.",
-  "rounded-md": "Applies a medium level of rounding to the corners.",
-  "border-red-500": "Sets the border color to a mid-level red.",
+  "border": "Applies a default border to the element. Why we use it: To visually separate content or add definition.",
+  "rounded": "Rounds the corners of the element. Why we use it: For a softer, more modern appearance.",
+  "border-2": "Sets the border width to 2 pixels. Why we use it: To create a thicker, more pronounced border.",
+  "border-dashed": "Makes the border style dashed. Why we use it: To add a stylistic, non-solid border effect.",
+  "rounded-md": "Applies a medium level of rounding to the corners. Why we use it: For a balanced, subtle roundness.",
+  "border-red-500": "Sets the border color to a mid-level red. Why we use it: To draw attention or indicate importance.",
 
   // Spacing (Padding, Margin, Gap)
-  "p-4": "Adds padding of 1rem on all sides.",
-  "p-8": "Adds padding of 2rem on all sides.",
-  "py-5": "Adds vertical padding of 1.25rem.",
-  "px-5": "Adds horizontal padding of 1.25rem.",
-  "m-4": "Adds margin of 1rem on all sides.",
-  "m-8": "Adds margin of 2rem on all sides.",
-  "mx-5": "Adds horizontal margin of 1.25rem.",
-  "my-5": "Adds vertical margin of 1.25rem.",
-  "gap-4": "Adds a gap of 1rem between items in a flex or grid layout.",
+  "p-4": "Adds padding of 1rem on all sides. Why we use it: To create space inside elements for better readability.",
+  "p-8": "Adds padding of 2rem on all sides. Why we use it: To provide extra interior spacing for larger elements.",
+  "py-5": "Adds vertical padding of 1.25rem. Why we use it: To space out content vertically without affecting horizontal spacing.",
+  "px-5": "Adds horizontal padding of 1.25rem. Why we use it: To space out content horizontally for improved layout.",
+  "m-4": "Adds margin of 1rem on all sides. Why we use it: To create external spacing between elements.",
+  "m-8": "Adds margin of 2rem on all sides. Why we use it: To provide more breathing room around larger elements.",
+  "mx-5": "Adds horizontal margin of 1.25rem. Why we use it: To evenly space elements horizontally.",
+  "my-5": "Adds vertical margin of 1.25rem. Why we use it: To separate elements vertically with balanced spacing.",
+  "gap-4": "Adds a gap of 1rem between items in a flex or grid layout. Why we use it: To consistently space out items within a container.",
 
   // Sizing
-  "w-32": "Sets the width to a fixed size (typically 8rem).",
-  "h-32": "Sets the height to a fixed size (typically 8rem).",
-  "max-w-32": "Sets the maximum width to a fixed size (typically 8rem).",
-  "min-w-32": "Sets the minimum width to a fixed size (typically 8rem).",
-  "max-h-32": "Sets the maximum height to a fixed size (typically 8rem).",
-  "min-h-32": "Sets the minimum height to a fixed size (typically 8rem).",
+  "w-32": "Sets the width to a fixed size (typically 8rem). Why we use it: To create consistent, fixed-width elements.",
+  "h-32": "Sets the height to a fixed size (typically 8rem). Why we use it: To maintain uniform element heights.",
+  "max-w-32": "Sets the maximum width to a fixed size (typically 8rem). Why we use it: To constrain elements within a specified width.",
+  "min-w-32": "Sets the minimum width to a fixed size (typically 8rem). Why we use it: To ensure elements don't shrink below a certain width.",
+  "max-h-32": "Sets the maximum height to a fixed size (typically 8rem). Why we use it: To limit the height of an element.",
+  "min-h-32": "Sets the minimum height to a fixed size (typically 8rem). Why we use it: To guarantee a baseline height for elements.",
 
   // Flex Layout
-  "flex": "Designates an element as a flex container.",
-  "flex-col": "Arranges flex items in a column.",
-  "flex-row": "Arranges flex items in a row.",
-  "inline-flex": "Creates an inline-level flex container.",
+  "flex": "Designates an element as a flex container. Why we use it: To enable flexible layouts and align child elements.",
+  "flex-col": "Arranges flex items in a column. Why we use it: For vertical stacking of elements.",
+  "flex-row": "Arranges flex items in a row. Why we use it: For horizontal alignment of elements.",
+  "inline-flex": "Creates an inline-level flex container. Why we use it: To align flex items within inline content flow.",
 
   // Justify Content
-  "justify-center": "Horizontally centers the flex items.",
-  "justify-end": "Aligns flex items to the end (right) horizontally.",
-  "justify-between": "Distributes items evenly with the first item at the start and the last at the end.",
-  "justify-evenly": "Evenly distributes items with equal space around them.",
-  "justify-around": "Distributes items with equal space before, between, and after them.",
+  "justify-center": "Horizontally centers the flex items. Why we use it: To create a balanced, centered layout.",
+  "justify-end": "Aligns flex items to the end (right) horizontally. Why we use it: To push items to the right side.",
+  "justify-between": "Distributes items evenly with the first item at the start and the last at the end. Why we use it: To maximize spacing between items.",
+  "justify-evenly": "Evenly distributes items with equal space around them. Why we use it: To ensure uniform spacing between all items.",
+  "justify-around": "Distributes items with equal space before, between, and after them. Why we use it: To create balanced spacing with extra room on the ends.",
 
   // Flex Wrap
-  "flex-wrap": "Allows flex items to wrap onto multiple lines.",
-  "flex-nowrap": "Prevents flex items from wrapping.",
+  "flex-wrap": "Allows flex items to wrap onto multiple lines. Why we use it: To manage overflow and maintain layout on smaller screens.",
+  "flex-nowrap": "Prevents flex items from wrapping. Why we use it: To keep items on a single line regardless of container width.",
 
   // Align Items
-  "items-start": "Aligns flex items to the start (top) vertically.",
-  "items-center": "Centers flex items vertically.",
-  "items-end": "Aligns flex items to the end (bottom) vertically.",
-  "items-baseline": "Aligns items along their text baselines.",
-  "items-stretch": "Stretches flex items to fill the container vertically.",
+  "items-start": "Aligns flex items to the start (top) vertically. Why we use it: To align items at the top for a clean start.",
+  "items-center": "Centers flex items vertically. Why we use it: To achieve a balanced vertical alignment.",
+  "items-end": "Aligns flex items to the end (bottom) vertically. Why we use it: To align items at the bottom for design consistency.",
+  "items-baseline": "Aligns items along their text baselines. Why we use it: To ensure text lines up nicely across items.",
+  "items-stretch": "Stretches flex items to fill the container vertically. Why we use it: To make items expand and fill available space.",
 
   // Grid Layout
-  "grid": "Designates an element as a grid container.",
-  "grid-cols-2": "Creates a grid layout with 2 columns.",
-  "grid-cols-4": "Creates a grid layout with 4 columns.",
-  "grid-rows-2": "Creates a grid layout with 2 rows.",
+  "grid": "Designates an element as a grid container. Why we use it: To create complex, two-dimensional layouts.",
+  "grid-cols-2": "Creates a grid layout with 2 columns. Why we use it: For simple two-column designs.",
+  "grid-cols-4": "Creates a grid layout with 4 columns. Why we use it: To evenly distribute content across four columns.",
+  "grid-rows-2": "Creates a grid layout with 2 rows. Why we use it: To structure content into two horizontal sections.",
 
   // Shadow
-  "shadow-sm": "Applies a small box shadow.",
-  "shadow-md": "Applies a medium box shadow.",
-  "shadow-lg": "Applies a large box shadow.",
-  "shadow-none": "Removes any box shadow.",
+  "shadow-sm": "Applies a small box shadow. Why we use it: To add a subtle depth effect.",
+  "shadow-md": "Applies a medium box shadow. Why we use it: To enhance depth and separation between elements.",
+  "shadow-lg": "Applies a large box shadow. Why we use it: To create a pronounced elevation effect.",
+  "shadow-none": "Removes any box shadow. Why we use it: When no shadow effect is desired.",
 
   // Opacity & Transition (Opacity)
-  "opacity-50": "Sets the element’s opacity to 50%.",
-  "hover:opacity-100": "Sets the element’s opacity to 100% when hovered.",
-  "transition-opacity": "Enables smooth transitions for opacity changes.",
-  "duration-300": "Sets the transition duration to 300ms.",
+  "opacity-50": "Sets the element’s opacity to 50%. Why we use it: To make the element semi-transparent for design effects.",
+  "hover:opacity-100": "Sets the element’s opacity to 100% when hovered. Why we use it: To highlight elements on user interaction.",
+  "transition-opacity": "Enables smooth transitions for opacity changes. Why we use it: To provide a gradual opacity change effect.",
+  "duration-300": "Sets the transition duration to 300ms. Why we use it: To control the speed of transitions for a smooth effect.",
 
   // Blur Utilities
-  "blur-sm": "Applies a small blur effect to the element.",
-  "blur-md": "Applies a medium blur effect to the element.",
-  "blur-lg": "Applies a large blur effect to the element.",
+  "blur-sm": "Applies a small blur effect to the element. Why we use it: To create a light, out-of-focus background.",
+  "blur-md": "Applies a medium blur effect to the element. Why we use it: For a more noticeable blur that softens details.",
+  "blur-lg": "Applies a large blur effect to the element. Why we use it: To strongly obscure background details for focus on foreground elements.",
 
   // Transition & Animation (General)
-  "transform": "Enables CSS transforms on the element.",
-  "transition-transform": "Enables smooth transitions for transform changes.",
-  "transition-all": "Enables smooth transitions for all properties.",
-  "transition-colors": "Enables smooth transitions for color changes.",
-  "delay-300": "Adds a delay of 300ms before the transition starts.",
+  "transform": "Enables CSS transforms on the element. Why we use it: To allow rotation, scaling, and other transformations.",
+  "transition-transform": "Enables smooth transitions for transform changes. Why we use it: To animate transform effects smoothly.",
+  "transition-all": "Enables smooth transitions for all properties. Why we use it: For a comprehensive animated effect on multiple changes.",
+  "transition-colors": "Enables smooth transitions for color changes. Why we use it: To create a fluid color change effect on interactions.",
+  "delay-300": "Adds a delay of 300ms before the transition starts. Why we use it: To time transitions appropriately for better user experience.",
 
   // Miscellaneous Utilities
-  "overflow-auto": "Adds scrollbars automatically when content overflows.",
-  "overflow-hidden": "Hides any content that overflows the element.",
-  "overflow-scroll": "Always shows scrollbars when content overflows.",
-  "visible": "Ensures the element is visible.",
-  "invisible": "Makes the element invisible while it still occupies space.",
+  "overflow-auto": "Adds scrollbars automatically when content overflows. Why we use it: To handle extra content without breaking layout.",
+  "overflow-hidden": "Hides any content that overflows the element. Why we use it: To create clean edges by concealing excess content.",
+  "overflow-scroll": "Always shows scrollbars when content overflows. Why we use it: To indicate that content can be scrolled.",
+  "visible": "Ensures the element is visible. Why we use it: To override any hidden visibility settings.",
+  "invisible": "Makes the element invisible while it still occupies space. Why we use it: To hide content without affecting layout structure.",
 
   // Cursor
-  "cursor-pointer": "Changes the cursor to a pointer when hovering.",
-  "cursor-default": "Uses the default cursor.",
-  "cursor-not-allowed": "Displays a 'not allowed' cursor, indicating the action is disabled.",
+  "cursor-pointer": "Changes the cursor to a pointer when hovering. Why we use it: To indicate clickable elements.",
+  "cursor-default": "Uses the default cursor. Why we use it: For standard non-interactive elements.",
+  "cursor-not-allowed": "Displays a 'not allowed' cursor, indicating the action is disabled. Why we use it: To signal that an action is not permitted.",
 
   // Responsive Design
-  "sm:text-sm": "Sets the text size to small on small screens.",
-  "md:text-lg": "Sets the text size to large on medium screens.",
-  "lg:text-xl": "Sets the text size to extra large on large screens.",
+  "sm:text-sm": "Sets the text size to small on small screens. Why we use it: To improve readability on smaller devices.",
+  "md:text-lg": "Sets the text size to large on medium screens. Why we use it: To enhance visibility on medium-sized devices.",
+  "lg:text-xl": "Sets the text size to extra large on large screens. Why we use it: To ensure prominent display on larger devices.",
 
   // Hover Effects
-  "hover:bg-blue-500": "Changes the background color to blue when hovered.",
-  "hover:text-white": "Changes the text color to white when hovered.",
+  "hover:bg-blue-500": "Changes the background color to blue when hovered. Why we use it: To provide visual feedback during interaction.",
+  "hover:text-white": "Changes the text color to white when hovered. Why we use it: To improve contrast and highlight elements on hover.",
 
   // Positioning
-  "relative": "Positions the element relative to its normal position.",
-  "static": "Uses the default static positioning.",
-  "absolute": "Positions the element absolutely relative to its nearest positioned ancestor.",
-  "fixed": "Fixes the element relative to the viewport.",
-  "absolute inset-0": "Positions the element absolutely with all offsets (top, right, bottom, left) set to 0.",
-  "absolute top-0 right-0": "Positions the element absolutely at the top-right corner.",
-  "absolute bottom-0 left-0": "Positions the element absolutely at the bottom-left corner.",
+  "relative": "Positions the element relative to its normal position. Why we use it: To allow absolute positioning of child elements.",
+  "static": "Uses the default static positioning. Why we use it: For elements that follow the normal document flow.",
+  "absolute": "Positions the element absolutely relative to its nearest positioned ancestor. Why we use it: To place elements precisely where needed.",
+  "fixed": "Fixes the element relative to the viewport. Why we use it: To keep elements in view even during scrolling.",
+  "absolute inset-0": "Positions the element absolutely with all offsets (top, right, bottom, left) set to 0. Why we use it: To cover the entire area of the parent element.",
+  "absolute top-0 right-0": "Positions the element absolutely at the top-right corner. Why we use it: To align elements to the top-right.",
+  "absolute bottom-0 left-0": "Positions the element absolutely at the bottom-left corner. Why we use it: To align elements to the bottom-left.",
 
   // Animation
-  "animate-spin": "Applies a continuous spinning animation.",
-  "animate-ping": "Applies a ping effect (scaling and fading) animation.",
-  "animate-bounce": "Applies a bouncing animation.",
-  "animate-pulse": "Applies a pulsing (fading) animation.",
+  "animate-spin": "Applies a continuous spinning animation. Why we use it: To indicate loading or dynamic activity.",
+  "animate-ping": "Applies a ping effect (scaling and fading) animation. Why we use it: To draw attention to a specific element.",
+  "animate-bounce": "Applies a bouncing animation. Why we use it: To create a playful, eye-catching effect.",
+  "animate-pulse": "Applies a pulsing (fading) animation. Why we use it: To subtly highlight an element with rhythmic opacity changes.",
 
   // Rotate (Transform)
-  "rotate-45": "Rotates the element by 45 degrees.",
-  "rotate-90": "Rotates the element by 90 degrees.",
-  "rotate-180": "Rotates the element by 180 degrees.",
-  "rotate-0": "No rotation is applied to the element.",
+  "rotate-45": "Rotates the element by 45 degrees. Why we use it: To add a tilted or dynamic look to an element.",
+  "rotate-90": "Rotates the element by 90 degrees. Why we use it: For dramatic orientation changes.",
+  "rotate-180": "Rotates the element by 180 degrees. Why we use it: To flip the element upside down.",
+  "rotate-0": "No rotation is applied to the element. Why we use it: To maintain the element's original orientation.",
 
   // Scale (Transform)
-  "scale-90": "Scales the element to 90% of its original size.",
-  "scale-100": "Keeps the element at its original size (100%).",
-  "scale-110": "Scales the element to 110% of its original size.",
-  "hover:scale-105": "Scales the element to 105% of its size when hovered.",
+  "scale-90": "Scales the element to 90% of its original size. Why we use it: To create a slightly reduced visual effect.",
+  "scale-100": "Keeps the element at its original size (100%). Why we use it: To display elements in their natural size.",
+  "scale-110": "Scales the element to 110% of its original size. Why we use it: To subtly enlarge an element for emphasis.",
+  "hover:scale-105": "Scales the element to 105% of its size when hovered. Why we use it: To provide interactive feedback by slightly enlarging on hover.",
 
   // Skew (Transform)
-  "skew-x-6": "Skews the element by 6 degrees along the X-axis.",
-  "skew-x-12": "Skews the element by 12 degrees along the X-axis.",
-  "skew-y-6": "Skews the element by 6 degrees along the Y-axis.",
-  "skew-y-12": "Skews the element by 12 degrees along the Y-axis.",
-  "skew-x-0": "Removes any skew along the X-axis.",
-  "skew-y-0": "Removes any skew along the Y-axis.",
+  "skew-x-6": "Skews the element by 6 degrees along the X-axis. Why we use it: To add an angled effect to elements horizontally.",
+  "skew-x-12": "Skews the element by 12 degrees along the X-axis. Why we use it: For a more pronounced horizontal skew effect.",
+  "skew-y-6": "Skews the element by 6 degrees along the Y-axis. Why we use it: To add a subtle vertical angle to an element.",
+  "skew-y-12": "Skews the element by 12 degrees along the Y-axis. Why we use it: For a stronger vertical skew effect.",
+  "skew-x-0": "Removes any skew along the X-axis. Why we use it: To reset horizontal skew to normal.",
+  "skew-y-0": "Removes any skew along the Y-axis. Why we use it: To reset vertical skew to normal.",
 
   // Ring (Focus Outline)
-  "ring-2": "Applies a ring (outline) with a width of 2 pixels.",
-  "ring-4": "Applies a ring with a width of 4 pixels.",
-  "ring-offset-2": "Adds a 2-pixel offset around the ring.",
-  "ring-offset-4": "Adds a 4-pixel offset around the ring.",
-  "ring-indigo-500": "Sets the ring color to an indigo shade.",
-  "ring-red-500": "Sets the ring color to a red shade.",
+  "ring-2": "Applies a ring (outline) with a width of 2 pixels. Why we use it: To highlight focus state with a subtle outline.",
+  "ring-4": "Applies a ring with a width of 4 pixels. Why we use it: For a more noticeable focus outline effect.",
+  "ring-offset-2": "Adds a 2-pixel offset around the ring. Why we use it: To provide space between the element and its ring.",
+  "ring-offset-4": "Adds a 4-pixel offset around the ring. Why we use it: To create a more pronounced gap around the focus ring.",
+  "ring-indigo-500": "Sets the ring color to an indigo shade. Why we use it: To apply a specific color theme to focus outlines.",
+  "ring-red-500": "Sets the ring color to a red shade. Why we use it: To draw strong attention to focused elements.",
 
   // Outline
-  "outline-none": "Removes the default outline from the element.",
-  "focus:outline": "Displays the default outline when the element is focused.",
-  "focus:outline-none": "Removes the outline even when the element is focused.",
+  "outline-none": "Removes the default outline from the element. Why we use it: To create a cleaner design when custom focus styles are applied.",
+  "focus:outline": "Displays the default outline when the element is focused. Why we use it: To indicate focus in form elements and interactive components.",
+  "focus:outline-none": "Removes the outline even when the element is focused. Why we use it: When you want to disable the focus outline for design purposes.",
 
   // Object Fit
-  "object-cover": "Scales the replaced content to cover the element while maintaining aspect ratio.",
-  "object-contain": "Scales the replaced content to be fully contained within the element.",
-  "object-fill": "Stretches the replaced content to fill the element, which may distort its aspect ratio.",
-  "object-none": "Prevents the replaced content from being resized to fit the element.",
+  "object-cover": "Scales the replaced content to cover the element while maintaining aspect ratio. Why we use it: To ensure the background or image fully covers the container.",
+  "object-contain": "Scales the replaced content to be fully contained within the element. Why we use it: To display the entire image without cropping.",
+  "object-fill": "Stretches the replaced content to fill the element, which may distort its aspect ratio. Why we use it: When complete coverage is needed regardless of aspect ratio.",
+  "object-none": "Prevents the replaced content from being resized to fit the element. Why we use it: To maintain the original dimensions of an image.",
 
   // Object Position
-  "object-center": "Centers the replaced content within its container.",
-  "object-top": "Aligns the replaced content to the top of its container.",
-  "object-bottom": "Aligns the replaced content to the bottom of its container.",
-  "object-left": "Aligns the replaced content to the left of its container.",
-  "object-right": "Aligns the replaced content to the right of its container.",
+  "object-center": "Centers the replaced content within its container. Why we use it: To align images or videos centrally.",
+  "object-top": "Aligns the replaced content to the top of its container. Why we use it: To focus on the upper part of an image.",
+  "object-bottom": "Aligns the replaced content to the bottom of its container. Why we use it: To emphasize the lower portion of an image.",
+  "object-left": "Aligns the replaced content to the left of its container. Why we use it: For left-aligned image positioning.",
+  "object-right": "Aligns the replaced content to the right of its container. Why we use it: For right-aligned image positioning.",
 
   // Z-Index
-  "z-0": "Sets the z-index to 0.",
-  "z-10": "Sets the z-index to 10.",
-  "z-20": "Sets the z-index to 20.",
-  "z-30": "Sets the z-index to 30.",
-  "z-40": "Sets the z-index to 40.",
-  "z-50": "Sets the z-index to 50.",
+  "z-0": "Sets the z-index to 0. Why we use it: To position an element at the base layer.",
+  "z-10": "Sets the z-index to 10. Why we use it: To stack an element above those with lower z-index.",
+  "z-20": "Sets the z-index to 20. Why we use it: For layering elements more prominently.",
+  "z-30": "Sets the z-index to 30. Why we use it: To ensure an element is placed even higher in the stacking order.",
+  "z-40": "Sets the z-index to 40. Why we use it: For advanced layering needs.",
+  "z-50": "Sets the z-index to 50. Why we use it: To bring an element to the very front of the stack.",
 
   // Pointer Events
-  "pointer-events-auto": "Enables pointer events on the element.",
-  "pointer-events-none": "Disables pointer events on the element.",
+  "pointer-events-auto": "Enables pointer events on the element. Why we use it: To allow interactions such as clicks.",
+  "pointer-events-none": "Disables pointer events on the element. Why we use it: To prevent user interactions with an element.",
 
   // User Select
-  "select-none": "Prevents the user from selecting text.",
-  "select-text": "Allows text selection.",
-  "select-all": "Selects all the text when interacted with.",
-  "select-auto": "Uses the browser’s default text selection behavior."
+  "select-none": "Prevents the user from selecting text. Why we use it: To improve user experience where text selection is undesired.",
+  "select-text": "Allows text selection. Why we use it: For interactive content where text needs to be highlighted.",
+  "select-all": "Selects all the text when interacted with. Why we use it: To facilitate easy copying of content.",
+  "select-auto": "Uses the browser’s default text selection behavior. Why we use it: To revert to standard text selection."
 };
 
 
