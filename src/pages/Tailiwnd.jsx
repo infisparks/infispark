@@ -289,6 +289,13 @@ const classDescriptions = {
   "text-center": "text-center se text center align ho jata hai.",
   "text-right": "text-right se text right align ho jata hai.",
   "text-justify": "text-justify se text justify align ho jata hai.",
+  "underline": "underline se text underline ho jata hai.",
+  "line-through": "line-through se text par line chal jati hai.",
+  "no-underline": "no-underline se text ki underline hata di jati hai.",
+  "capitalize": "capitalize se text ke pehle har word ka pehla letter capital ho jata hai.",
+  "normal-case": "normal-case se text ka default casing apply hota hai.",
+  "lowercase": "lowercase se text sab chhote akshar mein ho jata hai.",
+  "uppercase": "uppercase se text sab bade akshar mein ho jata hai.",
 };
 
 
