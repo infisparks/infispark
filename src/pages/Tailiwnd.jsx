@@ -284,7 +284,11 @@ const classDescriptions = {
   "text-opacity-50": "text-opacity-50 se text 50% opaque hota hai.",
   "text-opacity-75": "text-opacity-75 se text 75% opaque hota hai.",
   "text-opacity-100": "text-opacity-100 se text 100% opaque hota hai.",
-  "border-opacity-50": "border-opacity-50 se border 50% opaque hota hai."
+  "border-opacity-50": "border-opacity-50 se border 50% opaque hota hai.",
+  "text-left": "text-left se text left align ho jata hai.",
+  "text-center": "text-center se text center align ho jata hai.",
+  "text-right": "text-right se text right align ho jata hai.",
+  "text-justify": "text-justify se text justify align ho jata hai.",
 };
 
 
